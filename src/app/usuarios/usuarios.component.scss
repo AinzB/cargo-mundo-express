@@ -1,0 +1,219 @@
+@use 'variables';
+
+$top-menu-height: variables.$top-menu-height;
+
+.usuariosContainerPrincipal {
+    width: 100%;
+    height: calc(100vh - $top-menu-height);
+    padding: 2rem;
+    overflow-y: auto;
+
+    .usariosContainer {
+        background-color: variables.$white;
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        border-radius: 0 2rem 2rem 2rem;
+    
+        .userCard {
+            width: 45%;
+            height: 100%;
+            border: solid 1px variables.$light-gray;
+            border-radius: 2rem;
+            box-shadow: 0px 5px 10px 0px variables.$gray;
+            margin-top: 4.5rem;
+
+            .userCardHeader {
+                width: 100%;
+                height: 5rem;
+                background-color: variables.$white;
+                border-radius: 2rem 2rem 0 0;
+                position: relative;
+
+                .userImg {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    position: absolute;
+                    top: -3.5rem;
+    
+                    img {
+                        width: 7rem;
+                        height: 7rem;
+                    }
+    
+                    .femaleImg {
+                        border: solid 3px variables.$white;
+                        border-radius: 100%;
+                    }
+    
+                    .maleImg {
+                        border: solid 3px variables.$white;
+                        border-radius: 100%;
+                    }
+                }
+            }
+
+            .userNameRole {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 2rem;
+                
+                .userName {
+                    text-align: center;
+    
+                    p {
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        color: variables.$black;
+                        margin: 0;
+                    }
+                }
+
+                .userCargo {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 60%;
+                    padding: 0.1rem 0.2rem;
+                    border-radius: 1rem;
+
+                    p {
+                        color: variables.$white;
+                        font-size: 1rem;
+                        margin: 0;
+                    }
+                }
+
+                .userCargoActive {
+                    background-color: variables.$primary-background;
+                }
+
+                .userCargoInactive {
+                    background-color: variables.$gray;
+                }
+            }
+
+            .userInfo {
+                background-color: variables.$light-gray;
+                width: 100%;
+                padding: 1rem; 
+
+                .userInfoRow {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+
+                    .userInfoTitle {
+                        width: 20%;
+
+                        p {
+                            font-weight: 700;
+                            color: variables.$black;
+                            font-size: 1.1rem;
+                            margin: 0;
+                        }
+                    }
+
+                    .userInfoDetail {
+                        width: 80%;
+                        white-space: normal; 
+                        word-wrap: break-word; 
+                        overflow-wrap: break-word;
+
+                        p {
+                            font-weight: 700;
+                            color: variables.$gray;
+                            font-size: 1.1rem;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+            .userActions {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                padding: 2rem;
+                background-color: variables.$light-gray; 
+                border-radius: 0 0 2rem 2rem;
+
+                .userActionButton {
+                    color: variables.$white;
+                    width: 10rem;
+                    padding: 0.5rem 1rem;
+                    border-radius: 1rem;
+                    font-weight: 500;
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                    border: none;
+                } 
+
+                .userVisualizar {
+                    background-color: variables.$secondary-background;
+                }
+
+                .userEliminar {
+                    background-color: variables.$gray;
+                }
+
+                .userInactive {
+                    background-color: variables.$contrast;
+                }
+            }
+        }
+    }
+
+    .usuariosFilter {
+        display: flex;
+        align-items: center;
+
+        .usuarioFiltro {
+            width: 10rem;
+            height: 2.5rem;
+            background-color: variables.$primary-background;
+            color: variables.$white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5rem;
+            border: none;
+            border-radius: 1rem 1rem 0 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .usuarioFiltro:hover {
+            background-color: variables.$white;
+            color: variables.$primary-background;
+        }
+
+        .usuarioActivo {
+            background-color: variables.$white;
+            color: variables.$primary-background;
+        }
+    }
+
+}
+
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1050;
+}

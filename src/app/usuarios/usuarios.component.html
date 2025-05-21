@@ -1,0 +1,140 @@
+<div class="usuariosContainerPrincipal">
+    <div class="pageHeaderNav">
+        <div class="pageTitle">
+            <h2>Gestión de Usuarios</h2>
+            <p>{{ usuarios.length }} usuarios encontrados</p>
+        </div>
+        
+        <div class="pageHeaderSearch">
+            <input class="searchBar" type="text" placeholder="Buscar usuario" (keyup)="handleSearchFilter($event)">
+            <img class="searchIcon" src="icons/SEARCH.svg" alt="Icono de busqueda">
+        </div>
+    </div>
+
+    <div class="pageAgregar">
+        <button id="btnAgregar" class="btnAgregar" (click)="abrirModal()">
+            Agregar
+            <span class="addIcon">+</span>
+        </button>
+    </div>
+
+    <div class="usuariosFilter">
+        <button class="usuarioFiltro" *ngFor="let filtro of filtroStatus" 
+            (click)="handleFiltroPorActivo($event)"
+            [ngClass]="filtro.active ? 'usuarioActivo' : ''"
+            name="{{filtro.name }}"
+            value="{{filtro.value }}"
+        >
+            {{filtro.name}}
+        </button>
+    </div>
+
+    <div class="usariosContainer">
+        <div class="userCard" *ngFor="let usuario of usuarios">
+            <div class="userCardHeader">
+                <div class="userImg">
+                    <img [ngClass]="usuario.genre === 'male' ? 'maleImg' : 'femaleImg'" [src]="usuario.genre === 'male' ? 'male.svg' : 'female.svg'" alt="usuario.username">
+                </div>
+            </div>
+
+            <div class="userNameRole">
+                <div class="userName">
+                    <p>{{ usuario.username }}</p>
+                </div>
+
+                <div class="userCargo" [ngClass]="usuario.active ? 'userCargoActive' : 'userCargoInactive'">
+                    <p>{{ usuario.role }}</p>
+                </div>
+            </div>
+
+            <div class="userInfo">
+                <div class="userInfoRow">
+                    <div class="userInfoTitle">
+                        <p>Correo:</p>
+                    </div>
+    
+                    <div class="userInfoDetail">
+                        <p>{{ usuario.email }}</p>
+                    </div>
+                </div>
+
+                <div class="userInfoRow">
+                    <div class="userInfoTitle">
+                        <p>Sexo:</p>
+                    </div>
+    
+                    <div class="userInfoDetail">
+                        <p *ngIf="usuario?.genre === 'male'; else femaleTemplate">Masculino</p>
+                        <ng-template #femaleTemplate>
+                            <p>Femenino</p>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+
+            <div class="userActions">
+                <button class="userActionButton userVisualizar" [attr.userid]="usuario.id" (click)="visualizarUsuario($event)" *ngIf="usuario.active">
+                    Ver
+                </button>
+
+                <button class="userActionButton userEliminar" [attr.userid]="usuario.id" (click)="inactvidarUsuario($event)" *ngIf="usuario.active">
+                    Desactivar
+                </button>
+
+                <button class="userActionButton userInactive" [attr.userid]="usuario.id" (click)="handleActivarUsuario($event)" *ngIf="!usuario.active">
+                    Activar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addNewUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addNewUserLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addNewUserLabel">Nuevo Usuario</h1>
+                <button type="button" id="closeModal" class="btn-close" aria-label="Close" (click)="cerrarModal()"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3">
+                    <input type="text" class="form-control" id="" hidden>
+
+                    <div class="col-12 form-floating mb-3">
+                        <input type="text" class="form-control" id="userName" placeholder="Nombre de usuario">
+                        <label for="userName">Nombre del usuario</label>
+                    </div>
+
+                    <div class="col-12 form-floating mb-3">
+                        <input type="email" class="form-control" id="userEmail" placeholder="name@example.com">
+                        <label for="userEmail">Correo electronico</label>
+                    </div>
+
+                    <select id="userRole" class="form-select" aria-label="Nuevo rol de usuario">
+                        <option value="" selected>Escoge un rol</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Editor">Editor</option>
+                        <option value="Vista">Vista</option>
+                    </select>
+
+                    <select id="userGenre" class="form-select" aria-label="Genero del usuario">
+                        <option value="" selected>Escoge un genero</option>
+                        <option value="male">Masculino</option>
+                        <option value="female">Femenino</option>
+                    </select>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCerrar" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-primary" (click)="submitUser()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="spinner-container" class="spinner-overlay" role="status" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>

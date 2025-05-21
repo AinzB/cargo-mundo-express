@@ -1,0 +1,141 @@
+@use 'variables';
+
+$top-menu-height: variables.$top-menu-height;
+
+.mtop2 {
+    margin-top: 2rem;
+}
+
+.btnExportar {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: variables.$white;
+    border: none;
+    border-radius: 1.5rem;
+}
+
+.btnXlsx {
+    background-color: variables.$primary-background;
+}
+
+.btnCSV {
+    background-color: variables.$secondary-background;
+    margin-right: 2rem;
+}
+
+.reportesMainContainer {
+    width: 100%;
+    height: calc(100vh - $top-menu-height);
+    padding: 2rem;
+    overflow-y: auto;
+
+    .reportesContainer {
+        background-color: variables.$white;
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        border-radius: 0 2rem 2rem 2rem;
+
+        .reporteEnviosContainer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+
+            .reportMetric {
+                height: 20rem;
+                display: flex;
+                align-items: stretch;
+                justify-content: center;
+                border-radius: 0 0 1rem 1rem;
+                padding: 1rem;
+                box-shadow:
+                    /* Izquierda */
+                    -4px 0 6px -2px variables.$light-gray,
+                    /* Derecha */
+                    4px 0 6px -2px variables.$light-gray,
+                    /* Abajo */
+                    0 4px 6px 5px variables.$light-gray;
+
+                apx-chart {
+                    flex: 1;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .reportMetric50 {
+                flex-basis: calc(50% - 1rem);
+            }
+
+            .reportMetric100 {
+                width: 100%;
+            }
+        }
+    }
+
+    .reportesFiltros {
+        display: flex;
+        align-items: center;
+
+        .reporteFiltro {
+            width: 10rem;
+            height: 2.5rem;
+            background-color: variables.$primary-background;
+            color: variables.$white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5rem;
+            border: none;
+            border-radius: 1rem 1rem 0 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .reporteFiltro:hover {
+            background-color: variables.$white;
+            color: variables.$primary-background;
+        }
+
+        .reporteActivo {
+            background-color: variables.$white;
+            color: variables.$primary-background;
+        }
+    }
+}
+
+.tableReporteResume {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .ngx-datatable {
+        width: 100%;
+        height: 20rem;
+        border-radius: 1rem;
+        padding: 0 2rem;
+
+        ::ng-deep {
+            .datatable-header-cell {
+                color: variables.$secondary-background;
+                font-size: 1rem;
+                font-weight: 700;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .datatable-body-cell {
+                color:      variables.$gray;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+            }
+        }
+    }
+}

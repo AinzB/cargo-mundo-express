@@ -1,0 +1,159 @@
+<div class="inicioMainContainer">
+    <div class="inicioHeader">
+        <div class="inicioTitle">
+            <h1>Resumen Operativo</h1>
+            <p>Miercoles, 03 de Marzo de 2025</p>
+        </div>
+    
+        <div class="inicioFiltro">
+            <div class="filtroPeriodo">
+                <label for="filtroFecha" class="form-label">Período</label>
+                <select class="form-select" id="filtroFecha" required (change)="handleChangePeriod($event)">
+                    <option value="Diario">Hoy</option>
+                    <option selected value="Semanal">Esta Semana</option>
+                    <option value="Mensual">Este mes</option>
+                    <option value="Anual">Este año</option>
+
+                    <option value="Ayer">Ayer</option>
+                    <option value="lastweek">Semana Pasada</option>
+                    <option value="lastmonth">Mes pasado</option>
+                    <option value="lastyear">Año pasado</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="inicioMetricas">
+        <div class="metricaDestacada">
+            <div class="metricaImg">
+                <img src="metricIcons/envios_totales.svg" alt="Envios Totales">
+            </div>
+
+            <div class="metricaHeader">
+                <p>Envíos Totales</p>
+            </div>
+
+            <div class="metricaValue">
+                <p>{{ resumenEnvio.envios_totales }}</p>
+            </div>
+        </div>
+
+        <div class="metrica">
+            <div class="metricaImg">
+                <img src="metricIcons/en_transito.svg" alt="En Transito">
+            </div>
+
+            <div class="metricaHeader">
+                <p>En Tránsito</p>
+            </div>
+
+            <div class="metricaValue">
+                <p>{{ resumenEnvio.envios_en_transito }}</p>
+            </div>
+        </div>
+
+        <div class="metrica">
+            <div class="metricaImg">
+                <img src="metricIcons/listos_para_retirar.svg" alt="Listo para Retirar">
+            </div>
+
+            <div class="metricaHeader">
+                <p>Listos para Retirar</p>
+            </div>
+
+            <div class="metricaValue">
+                <p>{{ resumenEnvio.listos_para_retirar }}</p>
+            </div>
+        </div>
+
+        <div class="metrica">
+            <div class="metricaImg">
+                <img src="metricIcons/en_usa.svg" alt="En Bodega USA">
+            </div>
+
+            <div class="metricaHeader">
+                <p>En bodega USA</p>
+            </div>
+
+            <div class="metricaValue">
+                <p>{{ resumenEnvio.en_bodegas_usa }}</p>
+            </div>
+        </div>
+
+        <div class="metrica">
+            <div class="metricaImg">
+                <img src="metricIcons/en_nicaragua.svg" alt="En Bodega Nicaragua">
+            </div>
+
+            <div class="metricaHeader">
+                <p>En bodega Nicaragua</p>
+            </div>
+
+            <div class="metricaValue">
+                <p>{{ resumenEnvio.en_bodega_nicaragua }}</p>
+            </div>
+        </div>
+
+        <div class="metrica">
+            <div class="metricaImg">
+                <img src="metricIcons/en_delivery.svg" alt="En Delivery">
+            </div>
+
+            <div class="metricaHeader">
+                <p>En Delivery</p>
+            </div>
+
+            <div class="metricaValue">
+                <p>{{ resumenEnvio.en_delivery }}</p>
+            </div>
+        </div>
+
+        <div class="metrica">
+            <div class="metricaImg">
+                <img src="metricIcons/servicio_mas_frecuente.svg" alt="Servicio mas Frecuente">
+            </div>
+
+            <div class="metricaHeader">
+                <p>Servicio mas frecuente</p>
+            </div>
+
+            <div class="metricaValueLarge">
+                <p>{{ resumenEnvio.servicio_mas_frecuente?.name ?? '-' }}</p>
+            </div>
+        </div>
+
+        <div class="metrica">
+            <div class="metricaImg">
+                <img src="metricIcons/envio_mas_frecuente.svg" alt="Envio mas Frecuente">
+            </div>
+
+            <div class="metricaHeader">
+                <p>Envio mas frecuente</p>
+            </div>
+
+            <div class="metricaValueLarge">
+                <p>{{ resumenEnvio.envio_mas_frecuente ?? '-' }}</p>
+            </div>
+        </div>
+
+        <div class="metrica">
+            <div class="metricaImg">
+                <img src="metricIcons/peso_promedio.svg" alt="Peso Promedio por Envio">
+            </div>
+
+            <div class="metricaHeader">
+                <p>Peso promedio por envio</p>
+            </div>
+
+            <div class="metricaValue">
+                <p>{{ resumenEnvio.peso_promedio }} lb</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="spinner-container" class="spinner-overlay" role="status" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>

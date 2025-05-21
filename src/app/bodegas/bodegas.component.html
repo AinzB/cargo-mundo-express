@@ -1,0 +1,101 @@
+<div class="serviciosMainContainer">
+    <div class="pageHeaderNav">
+        <div class="pageTitle">
+            <h2>Gestión de Bodegas</h2>
+            <p>{{ arryBodegas.length }} bodegas encontradas</p>
+        </div>
+        
+        <div class="pageHeaderSearch">
+            <input class="searchBar" type="text" placeholder="Buscar por código de bodega">
+            <img class="searchIcon" src="icons/SEARCH.svg" alt="Icono de busqueda">
+        </div>
+    </div>
+
+    <div class="pageAgregar">
+        <button id="btnAgregar" class="btnAgregar" (click)="abrirModal()">
+            Agregar
+            <span class="addIcon">+</span>
+        </button>
+    </div>
+
+    <div class="bodegasFilter">
+        <button class="bodegaFiltro bodegaActivo">Todos</button>
+
+        <button class="bodegaFiltro">Activas</button>
+
+        <button class="bodegaFiltro">Inactivas</button>
+    </div>
+
+    <div class="bodegasCardContainer">
+        <div *ngFor="let bodega of arryBodegas" [ngClass]="bodega.active ? 'bodegaCard' : 'bodegaCardInactive'">
+            <div class="bodegaCardHeader">
+                <img src="warehouse.svg" alt="Warehouse icon">
+                <p>Bodega #{{ bodega.codigo }}</p>
+            </div>
+
+            <div class="bodegasSeccionMainContainer">
+                <div class="bodegaSeccionContainer" *ngFor="let row of bodega.dataJson">
+                    <div class="bodegaSeccion" *ngFor="let col of row.datos" [ngClass]="col.status == 'Ocupado' ? 'bodegaOcupada' : ''" [attr.bdstatus]="col.status" [attr.trcode]="col.tracking_code" (click)="handleTrackingCodeCopy($event)">
+                        {{ col.label }}
+
+                        <div class="tooltip-text" *ngIf="col.status == 'Ocupado'">
+                            Product Tracking ID: {{ col.tracking_code }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodegaActions">
+                <button class="bodegaBtnAction bodegaEditar" *ngIf="bodega.active">Editar</button>
+                <button class="bodegaBtnAction bodegaDesactivar" *ngIf="bodega.active">Desactivar</button>
+                <button class="bodegaBtnAction bodegaActivar" *ngIf="!bodega.active">Activar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="mostrarModal" class="modal">
+    <div class="modal-contenido">
+        <div class="addBodegaHeader">
+            <h3>Nueva Bodega</h3>
+            <button class="closeModal" (click)="cerrarModal()">x</button>
+        </div>
+
+        <div class="separador"></div>
+
+        <div class="newBodegaCodigo">
+            <div class="campo2">
+                <input type="text" id="codigoBodega" placeholder="Código de bodega:" required (keyup)="handleNewCodeBodegaChange($event)">
+                <label for="codigoBodega">Código de bodega</label>
+            </div>
+        </div>
+
+        <div class="contenedorBodegas">
+            <div class="bodegaInputContainer">
+                <div class="newBodegasContainer" *ngFor="let fila of bdgArray">
+                    <div class="newBodegaInput" [attr.rowId]="fila.fila" [attr.rowLabel]="fila.etiqueta" (click)="handleBodegaSeleccionada($event)" *ngFor="let item of fila.datos">{{ item.label }}</div>
+                </div>
+            </div>
+
+            <div class="bodegasActions">
+                <div class="bodegaActionsControles">
+                    <button class="btnNuevaFila" (click)="handleNewRow($event)">Nueva Fila</button>
+                    <button class="btnSeparar" (click)="handleSepararFila($event)">Separar</button>
+                    <button class="btnEliminar" (click)="handleEliminarFila($event)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bodegaGuardarOpciones">
+            <button class="btnCancelar" (click)="cerrarModal()">Cancelar</button>
+            <button class="btnGuardar" (click)="submitBodega()">Guardar</button>
+        </div>
+    </div>
+</div>
+
+<div id="spinner-container" class="spinner-overlay" role="status" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>

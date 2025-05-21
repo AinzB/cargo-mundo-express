@@ -1,0 +1,151 @@
+<div class="reportesMainContainer">
+    <div class="pageHeaderNav">
+        <div class="pageTitle">
+            <h2>Reportes</h2>
+        </div>
+    </div>
+
+    <div class="pageAgregar">
+        <button id="btnExportarCsv" class="btnExportar btnCSV" (click)="exportAsCSV()">
+            Exportar reporte CSV
+        </button>
+
+        <button id="btnExportarXlsx" class="btnExportar btnXlsx" (click)="exportAsXlsx()">
+            Exportar reporte XLSX
+        </button>
+    </div>
+
+    <div class="reportesFiltros">
+        <button class="reporteFiltro" *ngFor="let filtro of filtroStatus" 
+            [ngClass]="filtro.active ? 'reporteActivo' : ''"
+            (click)="handleFiltroReporte($event)"
+            name="{{filtro.name }}"
+            value="{{filtro.value }}"
+        >
+            {{filtro.name}}
+        </button>
+    </div>
+
+    <div class="reportesContainer">
+        <div class="reporteEnviosContainer" *ngIf="enviosActive">
+            <div class="reportMetric reportMetric50">
+                <apx-chart
+                    [series]="entregasVsRetrasos.series"
+                    [chart]="entregasVsRetrasos.chart"
+                    [xaxis]="entregasVsRetrasos.xaxis"
+                    [title]="entregasVsRetrasos.title"
+                    [plotOptions]="entregasVsRetrasos.plotOptions"
+                    [stroke]="entregasVsRetrasos.stroke"
+                    [noData]="entregasVsRetrasos.noData"
+                ></apx-chart>
+            </div>
+
+            <div class="reportMetric reportMetric50">
+                <apx-chart
+                    [series]="tiempoTransitoPromedio.series"
+                    [chart]="tiempoTransitoPromedio.chart"
+                    [xaxis]="tiempoTransitoPromedio.xaxis"
+                    [title]="tiempoTransitoPromedio.title"
+                    [plotOptions]="tiempoTransitoPromedio.plotOptions"
+                    [stroke]="tiempoTransitoPromedio.stroke"
+                    [noData]="tiempoTransitoPromedio.noData"
+                ></apx-chart>
+            </div>
+
+            <div class="reportMetric reportMetric50 mtop2">
+                <apx-chart
+                    [series]="progresoEntregas.series"
+                    [chart]="progresoEntregas.chart"
+                    [colors]="progresoEntregas.colors"
+                    [plotOptions]="progresoEntregas.plotOptions"
+                    [stroke]="progresoEntregas.stroke"
+                    [fill]="progresoEntregas.fill"
+                    [noData]="progresoEntregas.noData"
+                    [labels]="progresoEntregas.labels"
+                    [title]="progresoEntregas.title"
+                ></apx-chart>
+            </div>
+
+            <div class="reportMetric reportMetric50 mtop2">
+                <apx-chart
+                    [series]="enviosPorServicio.series"
+                    [chart]="enviosPorServicio.chart"
+                    [labels]="enviosPorServicio.labels"
+                    [theme]="enviosPorServicio.theme"
+                    [plotOptions]="enviosPorServicio.plotOptions"
+                    [grid]="enviosPorServicio.grid"
+                    [dataLabels]="enviosPorServicio.dataLabels"
+                    [legend]="enviosPorServicio.legend"
+                    [noData]="enviosPorServicio.noData"
+                    [title]="enviosPorServicio.title"
+                ></apx-chart>
+            </div>
+        </div> 
+
+        <div class="reporteEnviosContainer" *ngIf="finanzasActive">
+            <div class="reportMetric reportMetric100">
+                <apx-chart
+                    [series]="totalIngresos.series"
+                    [chart]="totalIngresos.chart"
+                    [xaxis]="totalIngresos.xaxis"
+                    [title]="totalIngresos.title"
+                    [plotOptions]="totalIngresos.plotOptions"
+                    [stroke]="totalIngresos.stroke"
+                    [noData]="totalIngresos.noData"
+                ></apx-chart>
+            </div>
+
+            <div class="reportMetric reportMetric100 mtop2">
+                <apx-chart
+                    [series]="ingresosPorServicioLine.series"
+                    [chart]="ingresosPorServicioLine.chart"
+                    [dataLabels]="ingresosPorServicioLine.dataLabels"
+                    [colors]="ingresosPorServicioLine.colors"
+                    [xaxis]="ingresosPorServicioLine.xaxis"
+                    [title]="ingresosPorServicioLine.title"
+                    [plotOptions]="ingresosPorServicioLine.plotOptions"
+                    [stroke]="ingresosPorServicioLine.stroke"
+                    [noData]="ingresosPorServicioLine.noData"
+                    [yaxis]="ingresosPorServicioLine.yaxis"
+                    [theme]="ingresosPorServicioLine.theme"
+                ></apx-chart>
+            </div>
+
+            <div class="reportMetric reportMetric50 mtop2">
+                <apx-chart
+                    [series]="ingresosPorServicioPie.series"
+                    [chart]="ingresosPorServicioPie.chart"
+                    [labels]="ingresosPorServicioPie.labels"
+                    [theme]="ingresosPorServicioPie.theme"
+                    [plotOptions]="ingresosPorServicioPie.plotOptions"
+                    [grid]="ingresosPorServicioPie.grid"
+                    [dataLabels]="ingresosPorServicioPie.dataLabels"
+                    [legend]="ingresosPorServicioPie.legend"
+                    [noData]="ingresosPorServicioPie.noData"
+                    [title]="ingresosPorServicioPie.title"
+                ></apx-chart>
+            </div>
+        </div>
+
+        <div class="tableReporteResume" *ngIf="resumenActive">
+            <ngx-datatable 
+                [rows]="rows" 
+                [columns]="columns"
+                [columnMode]="'flex'"
+                [rowHeight]="50"
+                [headerHeight]="50"
+                [messages]="{ emptyMessage: 'No hay datos para mostrar' }"
+                [scrollbarV]="true"
+                [scrollbarH]="true"
+                class="material"
+            >
+            </ngx-datatable>
+        </div>
+    </div>
+</div>
+
+<div id="spinner-container" class="spinner-overlay" role="status" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>

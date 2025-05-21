@@ -1,0 +1,152 @@
+@use 'variables';
+
+$top-menu-height: variables.$top-menu-height;
+
+$table-header-name-width: 12rem;
+$table-header-description-width: 22rem;
+$table-header-tipo-envio-width: 9rem;
+$table-header-tiempo-envio-width: 7rem;
+$table-header-precio-libra-width: 6rem;
+$table-header-precio-agregado-width: 6rem;
+
+$table-headers-total : $table-header-name-width + $table-header-description-width + $table-header-tipo-envio-width + $table-header-tiempo-envio-width + $table-header-precio-libra-width + $table-header-precio-agregado-width;
+
+.tableName {
+    width: $table-header-name-width;
+}
+
+.tableDescription {
+    width: $table-header-description-width;
+}
+
+.tableTipoEnvio {
+    width: $table-header-tipo-envio-width;
+}
+
+.tableTiempoEnvio {
+    width: $table-header-tiempo-envio-width;
+}
+
+.tablePrecioLibra {
+    width: $table-header-precio-libra-width;
+}
+
+.tablePrecioAgregado {
+    width: $table-header-precio-agregado-width;
+}
+
+.primaryBack {
+    background-color: variables.$primary-background;
+}
+
+.primaryColor {
+    color: variables.$primary-background;
+    font-weight: 500;
+}
+
+.justifyWord {
+    text-align: justify;
+}
+
+.leftWord {
+    text-align: left;
+}
+
+.serviciosMainContainer {
+    width: 100%;
+    height: calc(100vh - $top-menu-height);
+    padding: 2rem;
+    overflow-y: auto;
+    
+    .serviciosTableContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .serviciosTable {
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 2rem;
+            background-color: variables.$white;
+            padding: 1rem 2rem;
+            border-radius: 0 1.5rem 1.5rem 1.5rem;
+
+            .serviciosTableHeader {
+                display: flex;
+                justify-content: space-between;
+                min-width: $table-headers-total;
+
+                .serviciosTableHeaderItem {
+                    padding: 1rem;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-shrink: 0;
+
+                    h3 {
+                        font-size: 1.2rem;
+                        font-weight: 700;
+                        color: variables.$black;
+                        margin-bottom: 1rem;
+                    }
+
+                    p {
+                        margin: 0;
+                        font-weight: 500;
+                    }
+                }
+
+                .servicioInfo {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    color: variables.$gray;
+                    word-spacing: 0;
+                }
+            }
+
+            .servicioTableRow {
+                border-top: solid 0.1rem variables.$light-gray;
+            }
+
+            .tableRows {
+                border-left: solid 0.1rem variables.$light-gray;
+                border-right: solid 0.1rem variables.$light-gray;
+                border-bottom: solid 0.1rem variables.$light-gray;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    .serviciosFilter {
+        display: flex;
+        align-items: center;
+
+        .servicioFiltro {
+            width: 10rem;
+            height: 2.5rem;
+            background-color: variables.$primary-background;
+            color: variables.$white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5rem;
+            border: none;
+            border-radius: 1rem 1rem 0 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .servicioFiltro:hover {
+            background-color: variables.$white;
+            color: variables.$primary-background;
+        }
+
+        .servicioActivo {
+            background-color: variables.$white;
+            color: variables.$primary-background;
+        }
+    }
+}

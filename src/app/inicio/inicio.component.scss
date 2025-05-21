@@ -1,0 +1,188 @@
+@use 'variables';
+
+.mright{
+    margin-right: 2rem;  
+} 
+
+.inicioMainContainer {
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+
+    .inicioHeader {
+        height: 5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .inicioTitle {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+    
+            h1 {
+                font-size: 2rem;
+                font-weight: 700;
+                color: variables.$black;
+                margin: 0;
+            }
+
+            p {
+                margin: 0rem;
+                color: variables.$gray;
+                font-weight: 700;
+            }
+        }
+
+        .inicioFiltro {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+    
+            .filtroPeriodo {
+                width: 15rem;
+    
+                label {
+                    color: variables.$black;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                }
+    
+                select {
+                    background-color: variables.$white;
+                    color: variables.$black;
+                    border-radius: 0.6rem;
+                    padding: 0.5rem 1rem;
+                    font-weight: 500;
+                }
+
+                input {
+                    background-color: variables.$white;
+                    color: variables.$black;
+                    border-radius: 0.6rem;
+                    padding: 0.5rem 1rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    .inicioMetricas {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-top: 2rem;
+
+        .metrica {
+            width: 15rem;
+            height: 10rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            box-shadow: 5px 5px 10px variables.$gray;
+            background-color: variables.$white;
+            border-radius: 2rem;
+
+            .metricaImg {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
+            }
+
+            .metricaHeader {
+                text-align: center;
+                display: flex;
+                align-items: center;
+
+                p {
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    color: variables.$gray;
+                    margin: 0rem;
+                }
+            }
+
+            .metricaValue {
+                text-align: center;
+
+                p {
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: variables.$gray;
+                    margin: 0;
+                }
+            }
+
+            .metricaValueLarge {
+                text-align: center;
+
+                p {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: variables.$gray;
+                    margin: 0;
+                }
+            }
+        }
+
+        .metricaDestacada {
+            width: 15rem;
+            height: 10rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            box-shadow: 5px 5px 10px variables.$gray;
+            background-color: variables.$primary-background;
+            border-radius: 2rem;
+
+            .metricaImg {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
+            }
+
+            .metricaHeader {
+                text-align: center;
+                display: flex;
+                align-items: center;
+
+                p {
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    color: variables.$white;
+                    margin: 0rem;
+                }
+            }
+
+            .metricaValue {
+                text-align: center;
+
+                p {
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: variables.$white;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

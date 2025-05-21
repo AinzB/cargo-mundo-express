@@ -1,0 +1,514 @@
+<div class="enviosMainContainer">
+    <div class="pageHeaderNav">
+        <div class="pageTitle">
+            <h2>Gestión de Envíos</h2>
+            <p>{{ arrEnvios.length }} envíos encontrados</p>
+        </div>
+        
+        <div class="pageHeaderSearch">
+            <input class="searchBar" type="text" placeholder="Buscar por tracking ID" (keyup)="handleSearchFilter($event)">
+            <img class="searchIcon" src="icons/SEARCH.svg" alt="Icono de busqueda">
+        </div>
+    </div>
+
+    <div class="pageAgregar">
+        <button id="btnAgregar" class="btnTickets" (click)="abrirModalTicketSeleccion()">
+            Tickets
+            <span class="addIcon"><i class="fa-solid fa-file-pdf"></i></span>
+        </button>
+
+        <button id="btnAgregar" class="btnAgregar" (click)="abrirModal()">
+            Agregar
+            <span class="addIcon">+</span>
+        </button>
+    </div>
+
+    <div class="enviosFilter mtop2">
+        <button *ngFor="let filtros of filtroStatus" 
+            name="{{filtros.name}}" 
+            (click)="filtrarEnvios($event)"
+            class="envioFiltro"
+            [ngClass]="filtros.active ? 'envioActivo' : ''"
+        >
+            {{filtros.value}}
+        </button> 
+    </div>
+
+    <div class="enviosTableContainer">
+        <div class="enviosTable">
+            <div class="enviosTableHeader">
+                <div class="enviosTableHeaderItem tableActions">
+                    <h3>Actions</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableTrackingId">
+                    <h3>Tracking ID</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableDescripcion">
+                    <h3>Descripción</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableServicio">
+                    <h3>Servicio</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableStatus">
+                    <h3>Status</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableBodega">
+                    <h3>Bodega</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tablePeso">
+                    <h3>Peso (lb)</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableNombreEnvia">
+                    <h3>Nombre (Remitente)</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableIdentificacionEnvia">
+                    <h3>Contacto (Remitente)</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableNombreRecibe">
+                    <h3>Nombre (Receptor)</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableIdentificacionRecibe">
+                    <h3>Contacto (Receptor)</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableEntrega">
+                    <h3>Tipo Entrega</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableDepartamento">
+                    <h3>Departamento</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableDireccion">
+                    <h3>Dirección</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableFechaSalida">
+                    <h3>Fecha Salida</h3>
+                </div>
+
+                <div class="enviosTableHeaderItem tableFechaLlegada">
+                    <h3>Fecha Recibido</h3>
+                </div>
+            </div>
+
+            <div class="tableRows">
+                
+                <div *ngFor="let envio of arrEnvios" class="enviosTableHeader enviosTableRow">
+                    <div class="enviosTableHeaderItem tableActions leftWord enviosActionController">
+                        <a (click)="abrirEnvioUpdate($event)" [attr.envioId]="envio.id"><i class="fa-regular fa-eye abrirEnvio" ></i></a>
+                    </div>
+
+                    <div class="enviosTableHeaderItem tableTrackingId leftWord enviosInfo">
+                        <p class="primaryColor">{{ envio.tracking_id }}</p>
+                    </div>
+    
+                    <div class="enviosTableHeaderItem tableDescripcion leftWord enviosInfo">
+                        <p>{{ envio.descripcion }}</p>
+                    </div>
+    
+                    <div class="enviosTableHeaderItem tableServicio leftWord enviosInfo">
+                        <p>{{ envio.servicio.name }}</p>
+                    </div>
+                    
+                    <div class="enviosTableHeaderItem tableStatus leftWord enviosInfo">
+                        <select value="{{ envio.status }}" id="envStatus" required name="envStatus" (change)="handleStatusChange($event)" [attr.envioId]="envio.id">
+                            <option value="bodegaUSA">En bodegas USA</option>
+                            <option value="bodegaNicaragua">En bodegas Nicaragua</option>
+                            <option value="Recibido">Recibido</option>
+                            <option value="EnCamino">En Camino</option>
+                            <option value="Delivery">Delivery Enviado</option>
+                            <option value="Entregado">Entregado</option>
+                            <option value="Retrasado">Retrasado</option>
+                        </select>
+                    </div> 
+    
+                    <div class="enviosTableHeaderItem tableBodega leftWord enviosInfo">
+                        <p>{{ envio.bodega_etiqueta }} <i class="fa-regular fa-eye"></i></p>
+                    </div>
+    
+                    <div class="enviosTableHeaderItem tablePeso leftWord enviosInfo">
+                        <p>{{ envio.peso }} lb</p>
+                    </div>
+    
+                    <div class="enviosTableHeaderItem tableNombreEnvia leftWord enviosInfo">
+                        <p class="primaryColor">{{ envio.nombre_remitente }}</p>
+                    </div>
+    
+                    <div class="enviosTableHeaderItem tableIdentificacionEnvia leftWord enviosInfo">
+                        <p>{{ envio.email_remitente }}</p>
+                        <p>{{ envio.numero_remitente }}</p>
+                    </div>
+    
+                    <div class="enviosTableHeaderItem tableNombreRecibe leftWord enviosInfo">
+                        <p class="primaryColor">{{ envio.nombre_receptor }}</p>
+                    </div>
+    
+                    <div class="enviosTableHeaderItem tableIdentificacionRecibe leftWord enviosInfo">
+                        <p>{{ envio.email_receptor }}</p>
+                        <p>{{ envio.numero_receptor }}</p>
+                    </div>
+
+                    <div class="enviosTableHeaderItem tableEntrega leftWord enviosInfo">
+                        <p>{{ envio.entrega }}</p>
+                    </div>
+
+                    <div class="enviosTableHeaderItem tableDepartamento leftWord enviosInfo">
+                        <p>{{ envio.departamento }}</p>
+                    </div>
+
+                    <div class="enviosTableHeaderItem tableDireccion leftWord enviosInfo">
+                        <p>{{ envio.direccion }}</p>
+                    </div>
+
+                    <div class="enviosTableHeaderItem tableFechaSalida leftWord enviosInfo">
+                        <p>20 / 03 / 2025</p>
+                    </div>
+    
+                    <div class="enviosTableHeaderItem tableFechaLlegada leftWord enviosInfo">
+                        <p>25 / 03 / 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modalTicket" *ngIf="mostrarModalTickets">
+    <div class="modal-contenido">
+        <div class="addServiceHeader">
+            <h3>Nuevo Ticket</h3>
+            <button class="closeModal" (click)="cerrarModalTicketSeleccion()">x</button>
+        </div>
+
+        <div class="separador"></div>
+
+        <div class="ticketContainer" *ngIf="modalTicketSeleccion">
+            <div class="ticketCard mright2">
+                <div class="ticketHeader">
+                    <h3>Ticket #1</h3>
+                </div>
+
+                <div class="ticketBody">
+                    <img src="tickets/ticket_example.png" alt="Ticket template">
+                </div>
+
+                <div class="ticketActions">
+                    <button (click)="abrirModalTicketCaptura()">Seleccionar</button>
+                </div>
+            </div>
+
+            <div class="ticketCard">
+                <div class="ticketHeader">
+                    <h3>Ticket #2</h3>
+                </div>
+
+                <div class="ticketBody">
+                    <img src="tickets/ticket_second_example.png" alt="Ticket template">
+                </div>
+
+                <div class="ticketActions">
+                    <button (click)="abrirModalTicketSegundaCaptura()">Seleccionar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="newTickerEntrieContainer" *ngIf="modalTicketSegundaCaptura">
+            <div class="newServiceInput">
+                <input value="{{ ticketBuilder.consolidado }}" type="text" id="consolidado" (keyup)="handleInputTicketChange($event)" required placeholder="Numero Consolidado:" name="consolidado">
+                <label for="consolidado">Consolidado</label>
+            </div>
+
+            <div class="newServiceInput">
+                <input value="{{ ticketBuilder.remitente}}" type="text" id="remitente" (keyup)="handleInputTicketChange($event)" required placeholder="Remitente:" name="remitente">
+                <label for="remitente">Remitente</label>
+            </div>
+
+            <div class="newServiceInput">
+                <input value="{{ ticketBuilder.destinatario }}" type="text" id="destinatario" (keyup)="handleInputTicketChange($event)" required placeholder="Destinatario:" name="destinatario">
+                <label for="destinatario">Destinatario</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ ticketBuilder.destino }}" type="text" id="destino" (keyup)="handleInputTicketChange($event)" required placeholder="Destino:" name="destino">
+                <label for="destino">Destino</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ ticketBuilder.origen }}" type="text" id="origen" (keyup)="handleInputTicketChange($event)" required placeholder="Origen:" name="origen">
+                <label for="origen">Origen</label>
+            </div>
+
+            <div class="newServiceInput ">
+                <input value="{{ ticketBuilder.fecha }}" type="date" id="fecha" (keyup)="handleInputTicketChange($event)" required placeholder="Fecha:" name="fecha">
+                <label for="fecha">Fecha</label>
+            </div>
+
+            <div class="newServiceInput ">
+                <input value="{{ ticketBuilder.transporte }}" type="text" id="transporte" (keyup)="handleInputTicketChange($event)" required placeholder="Transporte:" name="transporte">
+                <label for="transporte">Transporte</label>
+            </div>
+
+            <div class="newServiceInput ">
+                <input value="{{ ticketBuilder.agencia}}" type="text" id="agencia" (keyup)="handleInputTicketChange($event)" required placeholder="Agencia:" name="agencia">
+                <label for="agencia">Agencia</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ ticketBuilder.cantidad}}" type="text" id="cantidad" (keyup)="handleInputTicketChange($event)" required placeholder="Cantidad:" name="cantidad">
+                <label for="cantidad">Cantidad</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ ticketBuilder.peso }}" type="text" id="peso" (keyup)="handleInputTicketChange($event)" required placeholder="Peso:" name="peso">
+                <label for="peso">Peso</label>
+            </div>
+
+            <div class="nuevoServicioBtn">
+                <button class="btnCancelar" (click)="cerrarModalTicketSeleccion()">Cancelar</button>
+                <button class="btnGuardar" (click)="submitTicket()">Generar</button>
+            </div>
+        </div>
+
+        <div class="newTickerEntrieContainer" *ngIf="modalTicketCaptura">
+            <div class="newServiceInput ">
+                <input value="{{ ticketBuilder.transporte }}" type="text" id="transporte" (keyup)="handleInputTicketChange($event)" required placeholder="Transporte:" name="transporte">
+                <label for="transporte">Transporte</label>
+            </div>
+
+            <div class="newServiceInput ">
+                <input value="{{ ticketBuilder.fecha }}" type="date" id="fecha" (keyup)="handleInputTicketChange($event)" required placeholder="Fecha:" name="fecha">
+                <label for="fecha">Fecha</label>
+            </div>
+
+            <div class="newServiceInput ">
+                <input value="{{ ticketBuilder.codigoproducto }}" type="text" id="codigoproducto" (keyup)="handleInputTicketChange($event)" required placeholder="Código de producto:" name="codigoproducto">
+                <label for="codigoproducto">Código del producto:</label>
+            </div>
+
+            <div class="newServiceInput">
+                <input value="{{ ticketBuilder.interncode }}" type="text" id="interncode" (keyup)="handleInputTicketChange($event)" required placeholder="Código interno:" name="interncode">
+                <label for="interncode">Código interno</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ ticketBuilder.destino }}" type="text" id="destino" (keyup)="handleInputTicketChange($event)" required placeholder="Destino:" name="destino">
+                <label for="destino">Destino</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ ticketBuilder.weight }}" type="text" id="weight" (keyup)="handleInputTicketChange($event)" required placeholder="Weight:" name="weight">
+                <label for="weight">Weight</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ ticketBuilder.vweight }}" type="text" id="vweight" (keyup)="handleInputTicketChange($event)" required placeholder="VWeight:" name="vweight">
+                <label for="vweight">VWeight</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ ticketBuilder.dimensiones }}" type="text" id="dimensiones" (keyup)="handleInputTicketChange($event)" required placeholder="Dimensiones:" name="dimensiones">
+                <label for="dimensiones">Dimensiones</label>
+            </div>
+
+            <div class="newServiceInput">
+                <input value="{{ ticketBuilder.descripcion }}" type="text" id="descripcion" (keyup)="handleInputTicketChange($event)" required placeholder="Descripcion:" name="descripcion">
+                <label for="descripcion">Descripcion</label>
+            </div>
+
+            <div class="nuevoServicioBtn">
+                <button class="btnCancelar" (click)="cerrarModalTicketSeleccion()">Cancelar</button>
+                <button class="btnGuardar" (click)="submitTicket()">Generar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="mostrarModal" class="modal">
+    <div class="modal-contenido">
+        <div class="addServiceHeader">
+            <h3>Nuevo Envio</h3>
+            <button class="closeModal" (click)="cerrarModal()">x</button>
+        </div>
+
+        <div class="separador"></div>
+
+        <div class="newServiceEntriesContainer">
+            <div class="newServiceInput">
+                <input value="{{ envio.tracking_id }}" type="text" id="trackingId" required placeholder="Tracking ID:" name="tracking_id" (keyup)="handleInputChange($event)">
+                <label for="trackingId">Tracking ID</label>
+            </div>
+    
+            <div class="newServiceInput">
+                <input value="{{ envio.descripcion }}" type="text" id="descripcion" placeholder="Descripción:" required name="descripcion" (keyup)="handleInputChange($event)">
+                <label for="descripcion">Descripción</label>
+            </div>
+
+            <label for="servicio" class="lblInput">Seleccione un servicio:</label>
+
+            <div class="newEnvioServicio">
+                <div class="envioServicioTable">
+                    <table id="servicio">
+                        <thead>
+                            <tr>
+                                <th class="w40">Servicio</th>
+                                <th class="w20">Transporte</th>
+                                <th class="w20">$ lb</th>
+                                <th class="w20">$ extra</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr *ngFor="let servicio of arrServicios" 
+                                [attr.srvid]="servicio.id"
+                                [ngClass]="servicio.id === selectedServicio.id ? 'activeService' : '' "
+                                (click)="handleSelectedServicio($event)" 
+                            >
+                                <td class="servName">{{ servicio.name }}</td>
+                                <td class="servTransp">{{ servicio.transporte }}</td>
+                                <td class="precio">$ {{ servicio.priceperlb }}</td>
+                                <td class="precio">$ {{ servicio.extraprice }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="newServiceInput">
+                <select value="{{ envio.status }}" id="serviceStatus" name="status" required name="status" (change)="handleInputChange($event)">
+                    <option value="bodegaUSA">En bodegas USA</option>
+                    <option value="bodegaNicaragua">En bodegas Nicaragua</option>
+                    <option value="Recibido">Recibido</option>
+                    <option value="EnCamino">En Camino</option>
+                    <option value="Delivery">Delivery Enviado</option>
+                    <option value="Entregado">Entregado</option>
+                    <option value="Retrasado">Retrasado</option>
+                </select>
+                <label for="serviceStatus">Status</label>
+            </div>
+
+            <div class="newServiceInput">
+                <select value="{{ envio.bodega.codigo }}" id="serviceBodega" name="bodega" required (change)="handleChangeBodega($event)">
+                    <option *ngFor="let bodega of arrBodegas; index as i" value="{{ bodega.codigo }}" [selected]="i === 0">Bodega #{{ bodega.codigo }}</option>
+                </select>
+                <label for="serviceBodega">Bodega</label>
+            </div>
+
+            <div class="bodegasCardContainer">
+                <div class="bodegaCard">
+                    <div class="bodegaCardHeader">
+                        <img src="warehouse.svg" alt="Warehouse icon">
+                        <p>Bodega #{{ selectedBodega.codigo }}</p>
+                    </div>
+        
+                    <div class="bodegasSeccionMainContainer">
+                        <div class="bodegaSeccionContainer" *ngFor="let row of selectedBodega.dataJson">
+                            <div class="bodegaSeccion" *ngFor="let col of row.datos" 
+                                [ngClass]="col.status === 'Disponible' ? 'bodegaDisponible' : col.value === bodegaValidada ? 'bodegaSeleccionada' : 'bodegaOcupada'"
+                                [attr.bdgvalue]="col.value" 
+                                [attr.bdgrowlabel]="col.etiqueta" 
+                                (click)="handleSelectedBodega($event)"
+                            >
+                                {{ col.label }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="newServiceInput">
+                <input value="{{ envio.peso }}" type="text" id="peso" placeholder="Peso (lb)" required name="peso" (keyup)="handleInputChange($event)">
+                <label for="peso">Peso (lb)</label>
+            </div>
+
+            <div class="newServiceInput">
+                <select value="{{ envio.entrega }}" id="entrega" required name="entrega" (change)="handleInputChange($event)">
+                    <option value="oficina" selected>Retiro en oficina</option>
+                    <option value="delivery_managua">Delivery Managua</option>
+                    <option value="delivery_nicaragua">Delivery Interior del País</option>
+                </select>
+                <label for="entrega">Entrega</label>
+            </div>
+
+            <div class="newServiceInput" *ngIf="envio.entrega === 'delivery_nicaragua'">
+                <select value="{{ envio.departamento }}" id="departamento" required name="departamento" (change)="handleInputChange($event)">
+                    <option value="Boaco">Boaco</option>
+                    <option value="Carazo">Carazo</option>
+                    <option value="Chinandega">Chinandega</option>
+                    <option value="Chontales">Chontales</option>
+                    <option value="Costa Caribe Norte">Costa Caribe Norte</option>
+                    <option value="Costa Caribe Sur">Costa Caribe Sur</option>
+                    <option value="Estelí">Estelí</option>
+                    <option value="Granada">Granada</option>
+                    <option value="Jinotega">Jinotega</option>
+                    <option value="León">León</option>
+                    <option value="Madriz">Madriz</option>
+                    <option value="Managua" selected>Managua</option>
+                    <option value="Masaya">Masaya</option>
+                    <option value="Nueva Segovia">Nueva Segovia</option>
+                    <option value="Río San Juan">Río San Juan</option>
+                    <option value="Rivas">Rivas</option>
+                </select>
+                <label for="departamento">Departamento</label>
+            </div>
+
+            <div class="newServiceInput">
+                <input value="{{ envio.direccion }}" type="text" id="direccion" placeholder="Dirección" required name="direccion" (keyup)="handleInputChange($event)">
+                <label for="direccion">Dirección</label>
+            </div>
+
+            <div class="newServiceInput">
+                <input value="{{ envio.nombre_remitente }}" type="text" id="remitenteNombre" placeholder="Nombre remitente:" required name="nombre_remitente" (keyup)="handleInputChange($event)">
+                <label for="remitenteNombre">Nombre remitente</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ envio.email_remitente }}" type="text" id="remitenteEmail" placeholder="Email remitente:" required name="email_remitente" (keyup)="handleInputChange($event)">
+                <label for="remitenteEmail">Email remitente</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ envio.numero_remitente }}" type="text" id="remitenteNumero" placeholder="Número remitente:" required name="numero_remitente" (keyup)="handleInputChange($event)">
+                <label for="remitenteNumero">Número remitente</label>
+            </div>
+
+
+            <div class="newServiceInput">
+                <input value="{{ envio.nombre_receptor }}" type="text" id="receptorNombre" placeholder="Nombre receptor:" required name="nombre_receptor" (keyup)="handleInputChange($event)">
+                <label for="receptorNombre">Nombre receptor</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ envio.email_receptor }}" type="text" id="receptorEmail" placeholder="Email receptor:" required name="email_receptor" (keyup)="handleInputChange($event)">
+                <label for="receptorEmail">Email receptor</label>
+            </div>
+
+            <div class="newServiceInput halfField">
+                <input value="{{ envio.numero_receptor }}" type="text" id="receptorNumero" placeholder="Número receptor:" required name="numero_receptor" (keyup)="handleInputChange($event)">
+                <label for="receptorNumero">Número receptor</label>
+            </div>
+
+            <div class="nuevoServicioBtn">
+                <button class="btnCancelar" (click)="cerrarModal()">Cancelar</button>
+                <button class="btnGuardar" (click)="submitEnvio()">Guardar</button>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<div id="spinner-container" class="spinner-overlay" role="status" *ngIf="loading" style="z-index: 9999;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>

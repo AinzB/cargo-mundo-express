@@ -1,0 +1,150 @@
+<div class="serviciosMainContainer">
+    <div class="pageHeaderNav">
+        <div class="pageTitle">
+            <h2>Gestión de Servicios</h2>
+            <p>{{ servicios.length }} servicios encontrados</p>
+        </div>
+        
+        <div class="pageHeaderSearch">
+            <input class="searchBar" type="text" placeholder="Buscar servicio">
+            <img class="searchIcon" src="icons/SEARCH.svg" alt="Icono de busqueda">
+        </div>
+    </div>
+
+    <div class="pageAgregar">
+        <button id="btnAgregar" class="btnAgregar" (click)="abrirModal()">
+            Agregar
+            <span class="addIcon">+</span>
+        </button>
+    </div>
+
+    <div class="serviciosFilter mtop2">
+        <button *ngFor="let filtros of filtroStatus" 
+            name="{{filtros.name}}" 
+            (click)="filtrarEnvios($event)"
+            class="servicioFiltro"
+            [ngClass]="filtros.active ? 'servicioActivo' : ''"
+        >
+            {{filtros.value}}
+        </button> 
+    </div>
+
+    <div class="serviciosTableContainer">
+        <div class="serviciosTable">
+            <div class="serviciosTableHeader">
+                <div class="serviciosTableHeaderItem tableName">
+                    <h3>Servicio</h3>
+                </div>
+
+                <div class="serviciosTableHeaderItem tableDescription">
+                    <h3>Descripción</h3>
+                </div>
+
+                <div class="serviciosTableHeaderItem tableTipoEnvio">
+                    <h3>Transporte</h3>
+                </div>
+
+                <div class="serviciosTableHeaderItem tableTiempoEnvio">
+                    <h3>Duración</h3>
+                </div>
+
+                <div class="serviciosTableHeaderItem tablePrecioLibra">
+                    <h3>$ x lb</h3>
+                </div>
+
+                <div class="serviciosTableHeaderItem tablePrecioAgregado">
+                    <h3>$ extra</h3>
+                </div>
+            </div>
+
+            <div class="tableRows">
+                <div *ngFor="let servicio of servicios" class="serviciosTableHeader servicioTableRow">
+                    <div class="serviciosTableHeaderItem tableName servicioInfo leftWord">
+                        <p class="primaryColor">{{ servicio.name }}</p>
+                    </div>
+    
+                    <div class="serviciosTableHeaderItem tableDescription servicioInfo justifyWord">
+                        <p>{{ servicio.description }}</p>
+                    </div>
+    
+                    <div class="serviciosTableHeaderItem tableTipoEnvio servicioInfo leftWord">
+                        <p>{{ servicio.transporte }}</p>
+                    </div>
+    
+                    <div class="serviciosTableHeaderItem tableTiempoEnvio servicioInfo leftWord">
+                        <p>{{ servicio.duracion }} dias</p>
+                    </div>
+    
+                    <div class="serviciosTableHeaderItem tablePrecioLibra servicioInfo leftWord">
+                        <p>$ {{ servicio.priceperlb }}</p>
+                    </div>
+    
+                    <div class="serviciosTableHeaderItem tablePrecioAgregado servicioInfo leftWord">
+                        <p>$ {{ servicio.extraprice }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addNewServicio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addNewServicioLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addNewServicioLabel">Nuevo Servicio</h1>
+                <button type="button" id="closeModal" class="btn-close" aria-label="Close" (click)="cerrarModal()"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3">
+                    <input type="text" class="form-control" id="" hidden>
+
+                    <div class="col-12 form-floating mb-3">
+                        <input type="text" class="form-control" id="servicioName" placeholder="Servicio">
+                        <label for="servicioName">Nombre del servicio</label>
+                    </div>
+
+                    <div class="col-12 form-floating mb-3">
+                        <input type="text" class="form-control" id="servicioDescription" placeholder="Descripción">
+                        <label for="servicioDescription">Descripción</label>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <select id="servicioTransporte" class="form-select">
+                            <option value="" selected>Escoge un tipo de transporte</option>
+                            <option value="Aereo">Aéreo</option>
+                            <option value="Maritimo">Marítimo</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 form-floating mb-3">
+                        <input type="text" placeholder="Duración" id="servicioDuracion" class="form-control">
+                        <label for="servicioDuracion">Duración del viaje</label>
+                    </div>
+
+                    <div class="col-6 form-floating mb-3">
+                        <input type="text" placeholder="Precio por libra" id="servicioPriceperlb" class="form-control">
+                        <label for="servicioPriceperlb">Precio por libra</label>
+                    </div>
+
+                    <div class="col-6 form-floating mb-3">
+                        <input type="text" placeholder="Precio extra" id="servicioExtraprice" class="form-control">
+                        <label for="servicioExtraprice">Precio extra</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnCerrar" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-primary" (click)="submitServicio()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="spinner-container" class="spinner-overlay" role="status" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>

@@ -1,0 +1,866 @@
+@use 'variables';
+
+$top-menu-height: variables.$top-menu-height;
+
+$table-header-actions-width: 5rem;
+$table-header-tracking-id-width: 10rem;
+$table-header-descripcion-width: 20rem;
+$table-header-servicio-width: 10rem;
+$table-header-status-width: 15rem;
+$table-header-bodega-width: 7rem;
+$table-header-fecha-salida-width: 13rem;
+$table-header-fecha-llegada-width: 13rem;
+$table-header-peso-width: 8rem;
+$table-header-nombre-envia-width: 15rem;
+$table-header-identificacion-envia-width: 15rem;
+$table-header-nombre-recibe-width: 15rem;
+$table-header-identificacion-recibe-width: 15rem;
+$table-header-entrega-width: 15rem;
+$table-header-departamento-width: 15rem;
+$table-header-direccion-width: 15rem;
+
+$table-headers-total : $table-header-actions-width + $table-header-tracking-id-width + $table-header-descripcion-width + $table-header-servicio-width + $table-header-status-width + $table-header-bodega-width + $table-header-fecha-salida-width + $table-header-fecha-llegada-width + $table-header-peso-width + $table-header-nombre-envia-width + $table-header-identificacion-envia-width + $table-header-nombre-recibe-width + $table-header-identificacion-recibe-width + $top-menu-height + $table-header-entrega-width + $table-header-departamento-width + $table-header-direccion-width;
+
+$modal-height: 30rem;
+$modal-header-height: 3rem;
+
+.tableActions {
+    width: $table-header-actions-width;
+}
+
+.tableTrackingId {
+    width: $table-header-tracking-id-width;
+}
+
+.tableDescripcion {
+    width: $table-header-descripcion-width;
+}
+
+.tableServicio {
+    width: $table-header-servicio-width;
+}
+
+.tableStatus {
+    width: $table-header-status-width;
+
+    select {
+        border-radius: 1rem;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        padding: 0.1rem 0.5rem;
+        border: solid 0.1rem variables.$contrast;
+        color: variables.$primary-background;
+        font-weight: 500;
+    }
+}
+
+.tableBodega {
+    width: $table-header-bodega-width;
+}
+
+.tableFechaSalida {
+    width: $table-header-fecha-salida-width;
+}
+
+.tableFechaLlegada {
+    width: $table-header-fecha-llegada-width;
+}
+
+.tablePeso {
+    width: $table-header-peso-width;
+}
+
+.tableNombreEnvia {
+    width: $table-header-nombre-envia-width;
+}
+
+.tableIdentificacionEnvia {
+    width: $table-header-identificacion-envia-width;
+}
+
+.tableNombreRecibe {
+    width: $table-header-nombre-recibe-width;
+}
+
+.tableIdentificacionRecibe {
+    width: $table-header-identificacion-recibe-width;
+}
+
+.tableEntrega {
+    width: $table-header-entrega-width;
+}
+
+.tableDepartamento {
+    width: $table-header-departamento-width;
+}
+
+.tableDireccion {
+    width: $table-header-direccion-width;
+}
+
+.primaryBack {
+    background-color: variables.$primary-background;
+}
+
+.primaryColor {
+    color: variables.$primary-background;
+    font-weight: 500;
+}
+
+.statusRetenido {
+    color: variables.$contrast;
+    font-weight: 500;
+}
+
+.justifyWord {
+    text-align: justify;
+}
+
+.leftWord {
+    text-align: left;
+}
+
+.mtop2 {
+    margin-top: 2rem;
+}
+
+.mright2 {
+    margin-right: 2rem;
+}
+
+.btnTickets {
+    width: 10rem;
+    background-color: transparent;
+    border: solid 0.15rem variables.$contrast;
+    color: variables.$contrast;
+    font-size: 1.2rem;
+    padding: 0.3rem 1.5rem;
+    border-radius: 2rem;
+    transition: all 0.5s ease-in-out;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 2.5rem;
+
+    .addIcon {
+        font-size: 1.2rem;
+        font-weight: 900;
+    }
+}
+
+.btnTickets:hover {
+    background-color: variables.$contrast;
+    color: variables.$white;
+}
+
+.enviosMainContainer {
+    width: 100%;
+    height: calc(100vh - $top-menu-height);
+    padding: 2rem;
+    overflow-y: auto;
+
+    .enviosTableContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .enviosTable {
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 2rem;
+            background-color: variables.$white;
+            padding: 1rem 2rem;
+            border-radius: 0 1.5rem 1.5rem 1.5rem;
+
+            .enviosTableHeader {
+                display: flex;
+                justify-content: space-between;
+                min-width: $table-headers-total;
+
+                .enviosTableHeaderItem {
+                    padding: 1rem;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-shrink: 0;
+
+                    h3 {
+                        font-size: 1.2rem;
+                        font-weight: 700;
+                        color: variables.$black;
+                        margin-bottom: 1rem;
+                    }
+
+                    p {
+                        margin: 0;
+                        font-weight: 500;
+                    }
+                }
+
+                .enviosInfo {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    color: variables.$gray;
+                    word-spacing: 0;
+                    overflow-x: hidden;
+                }
+
+                .enviosActionController {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                }
+
+                .abrirEnvio {
+                    color: variables.$primary-background;
+                    cursor: pointer;
+                    pointer-events: auto;
+                }
+
+                .abrirTicket {
+                    color: variables.$gray;
+                    cursor: pointer;
+                }
+            }
+
+            .enviosTableRow {
+                border-top: solid 0.1rem variables.$light-gray;
+                border-right: solid 0.1rem variables.$light-gray;
+            }
+
+            .tableRows {
+                border-left: solid 0.1rem variables.$light-gray;
+                border-bottom: solid 0.1rem variables.$light-gray;
+                min-width: $table-headers-total;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    .enviosFilter {
+        display: flex;
+        align-items: center;
+
+        .envioFiltro {
+            width: 10rem;
+            height: 2.5rem;
+            background-color: variables.$primary-background;
+            color: variables.$white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5rem;
+            border: none;
+            border-radius: 1rem 1rem 0 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .envioFiltro:hover {
+            background-color: variables.$white;
+            color: variables.$primary-background;
+        }
+
+        .envioActivo {
+            background-color: variables.$white;
+            color: variables.$primary-background;
+        }
+    }
+}
+
+.modalTicket {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+    .modal-contenido {
+        background: white;
+        width: 35rem;
+        height: $modal-height;
+        border-radius: 1rem;
+        padding: 1rem;
+        overflow: hidden;
+
+        .addServiceHeader {
+            width: 100%;
+            height: $modal-header-height;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    
+            h3 {
+                margin: 0;
+                font-size: 1.6rem;
+                font-weight: 500;
+                color: variables.$black;
+            }
+    
+            button {
+                background-color: transparent;
+                border: none;
+                font-weight: 500;
+                font-size: 1.7rem;
+                color: variables.$gray;
+                transition: all 0.5s ease-in-out;
+            }
+    
+            button:hover {
+                color: variables.$primary-background;
+            }
+    
+        }
+
+        .separador {
+            width: 100%;
+            height: 0.1rem;
+            background-color: variables.$gray;
+        }
+
+        .ticketContainer {
+            width: 100%;
+            height: 20rem;
+            overflow-y: auto;
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 1rem;
+
+            .ticketCard {
+                flex-basis: calc(33% - 1rem);
+                height: 15rem;
+
+                .ticketHeader {
+                    text-align: center;
+
+                    h3 {
+                        font-size: 1.3rem;
+                    }
+                }
+
+                .ticketBody {
+                    width: 100%;
+                    height: 100%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .ticketActions {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    button {
+                        background-color: transparent;
+                        font-size: 1.1rem;
+                        border: solid 0.1rem variables.$primary-background;
+                        color: variables.$primary-background;
+                        border-radius: 1rem;
+                        padding: 0.1rem 1rem;
+                        transition: all 0.5s ease-in-out;
+                    }
+
+                    button:hover {
+                        background-color: variables.$primary-background;
+                        color: variables.$white;
+                    }
+                }
+            }
+        }
+
+        .newTickerEntrieContainer {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            height: calc($modal-height - $modal-header-height - 2.1rem);
+            overflow-y: auto;
+            scrollbar-width: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .newServiceInput {
+                position: relative;
+                width: 100%;
+                margin-top: 1rem;
+    
+                input, select {
+                    width: 100%;
+                    height: 2.5rem;
+                    border-radius: 0.5rem;
+                    font-size: 1rem;
+                    padding: 0 1.5rem;
+                    border: 2px solid variables.$gray;
+                    background: transparent;
+                    color: variables.$primary-background;
+                    outline: none;
+                }
+    
+                input::placeholder, select::placeholder{
+                    opacity: 0;
+                    transition: opacity 0.3 ease;
+                }
+    
+                label {
+                    position: absolute;
+                    top: 50%;
+                    left: 0%;
+                    transform: translateY(-50%);
+                    color: variables.$secondary-background;
+                    font-size: 1rem;
+                    pointer-events: none;
+                    background-color: transparent;
+                    padding: 0 1rem;
+                    transition: 0.3s;
+                }
+    
+                input:focus::placeholder, select:focus::placeholder {
+                    opacity: 1;
+                }
+    
+                input:focus ~ label,
+                input:valid ~ label,
+                select:focus ~ label,
+                select:valid ~ label {
+                    top: 0;
+                    left: 5%;
+                    font-size: 0.8rem;
+                    padding: 0 1rem;
+                    background: variables.$secondary-background;
+                    border: 2px solid variables.$secondary-background;
+                    border-radius: 1rem;
+                    color: variables.$white;
+                }
+            }
+
+            .nuevoServicioBtn {
+                margin-top: 1rem;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                button {
+                    background-color: transparent;
+                    border: none;
+                    font-size: 1.2rem;
+                    border-radius: 1rem;
+                    color: variables.$white;
+                    font-weight: 500;
+                    width: 10rem;
+                    padding: 0.2rem 1rem;
+                }
+
+                .btnCancelar {
+                    background-color: variables.$gray;
+                    margin-right: 2rem;
+                }
+
+                .btnGuardar {
+                    background-color: variables.$primary-background;
+                }
+            }
+
+            .halfField {
+                width: 48%;
+            }
+
+            .lblInput {
+                width: 100%;
+                background-color: variables.$secondary-background;
+                font-weight: 500;
+                color: variables.$white;
+                border-radius: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.1rem 1rem;
+                margin-top: 1rem;
+            }
+        }
+
+        .newTickerEntrieContainer::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modal-contenido {
+        background: white;
+        width: 35rem;
+        height: $modal-height;
+        border-radius: 1rem;
+        padding: 1rem;
+        overflow: hidden;
+
+        .addServiceHeader {
+            width: 100%;
+            height: $modal-header-height;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    
+            h3 {
+                margin: 0;
+                font-size: 1.6rem;
+                font-weight: 500;
+                color: variables.$black;
+            }
+    
+            button {
+                background-color: transparent;
+                border: none;
+                font-weight: 500;
+                font-size: 1.7rem;
+                color: variables.$gray;
+                transition: all 0.5s ease-in-out;
+            }
+    
+            button:hover {
+                color: variables.$primary-background;
+            }
+    
+        }
+    
+        .separador {
+            width: 100%;
+            height: 0.1rem;
+            background-color: variables.$gray;
+        }
+
+        .newServiceEntriesContainer {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            height: calc($modal-height - $modal-header-height - 2.1rem);
+            overflow-y: auto;
+            scrollbar-width: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .newServiceInput {
+                position: relative;
+                width: 100%;
+                margin-top: 1rem;
+    
+                input, select {
+                    width: 100%;
+                    height: 2.5rem;
+                    border-radius: 0.5rem;
+                    font-size: 1rem;
+                    padding: 0 1.5rem;
+                    border: 2px solid variables.$gray;
+                    background: transparent;
+                    color: variables.$primary-background;
+                    outline: none;
+                }
+    
+                input::placeholder, select::placeholder{
+                    opacity: 0;
+                    transition: opacity 0.3 ease;
+                }
+    
+                label {
+                    position: absolute;
+                    top: 50%;
+                    left: 0%;
+                    transform: translateY(-50%);
+                    color: variables.$secondary-background;
+                    font-size: 1rem;
+                    pointer-events: none;
+                    background-color: transparent;
+                    padding: 0 1rem;
+                    transition: 0.3s;
+                }
+    
+                input:focus::placeholder, select:focus::placeholder {
+                    opacity: 1;
+                }
+    
+                input:focus ~ label,
+                input:valid ~ label,
+                select:focus ~ label,
+                select:valid ~ label {
+                    top: 0;
+                    left: 5%;
+                    font-size: 0.8rem;
+                    padding: 0 1rem;
+                    background: variables.$secondary-background;
+                    border: 2px solid variables.$secondary-background;
+                    border-radius: 1rem;
+                    color: variables.$white;
+                }
+            }
+
+            .newEnvioServicio {
+                width: 100%;
+                height: 10rem;
+                margin-top: 0.5rem;
+                border: solid 0.1rem variables.$gray;
+                border-radius: 0.5rem;
+                padding-bottom: 0.5rem;
+                overflow: hidden;
+
+                .envioServicioTable {
+                    overflow-y: auto;
+                    height: 100%;
+
+                    table {
+                        width: 100%;
+                        height: 100%;
+                        border-collapse: separate;
+                        border-spacing: 0;
+                        padding: 0.5rem;
+                        font-weight: 500;
+    
+                        thead {
+                            border-bottom: 1px solid #ccc;
+    
+                            tr{
+                                th{
+                                    border-bottom: solid 0.1rem variables.$gray;
+                                }
+                            }
+    
+                            .w40 {
+                                width: 40%;
+                            }
+    
+                            .w20 {
+                                width: 20%;
+                            }
+                        }
+    
+                        tbody {
+                            tr {
+                                cursor: pointer;
+                                transition: all 0.5s ease-in-out;
+    
+                                td {
+                                    text-align: start;
+                                    vertical-align: top;
+                                }
+    
+                                .servName {
+                                    color: variables.$primary-background;
+                                }
+    
+                                .servTransp {
+                                    color: variables.$gray;
+                                }
+    
+                                .precio {
+                                    color: variables.$green;
+                                }
+                            }
+    
+                            tr:hover {
+                                background-color: variables.$primary-background;
+                                color: variables.$white;
+    
+                                .servName {
+                                    color: variables.$white;
+                                }
+    
+                                .servTransp {
+                                    color: variables.$white;
+                                }
+    
+                                .precio {
+                                    color: variables.$white;
+                                }
+                            }
+
+                            .activeService {
+                                background-color: variables.$primary-background;
+                                color: variables.$white;
+    
+                                .servName {
+                                    color: variables.$white;
+                                }
+    
+                                .servTransp {
+                                    color: variables.$white;
+                                }
+    
+                                .precio {
+                                    color: variables.$white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .halfField {
+                width: 48%;
+            }
+
+            .nuevoServicioBtn {
+                margin-top: 1rem;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                button {
+                    background-color: transparent;
+                    border: none;
+                    font-size: 1.2rem;
+                    border-radius: 1rem;
+                    color: variables.$white;
+                    font-weight: 500;
+                    width: 10rem;
+                    padding: 0.2rem 1rem;
+                }
+
+                .btnCancelar {
+                    background-color: variables.$gray;
+                    margin-right: 2rem;
+                }
+
+                .btnGuardar {
+                    background-color: variables.$primary-background;
+                }
+            }
+
+            .lblInput {
+                width: 100%;
+                background-color: variables.$secondary-background;
+                font-weight: 500;
+                color: variables.$white;
+                border-radius: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.1rem 1rem;
+                margin-top: 1rem;
+            }
+
+            .bodegasCardContainer {
+                width: 100%;
+                padding: 0 2rem;
+                border-radius:  0 1.5rem 1.5rem 1.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                background-color: variables.$white;
+        
+                .bodegaCard {
+                    width: 80%;
+                    border-radius: 1rem;
+                    height: 18rem;
+                    margin-top: 2rem;
+                    background-color: variables.$white;
+                    box-shadow: 0px 5px 10px 0px variables.$gray;
+                    margin-right: 5%;
+                    margin-left: 5%;
+        
+                    .bodegaCardHeader {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 3rem;
+                        background-color: variables.$primary-background;
+                        border-radius: 1rem 1rem 0 0;
+                        padding: 0.5rem 0;
+                        margin-bottom: 0.5rem;
+        
+                        img {
+                            width: 2.5rem;
+                            height: 2.5rem
+                        }
+        
+                        p {
+                            padding-left: 2rem;
+                            margin: 0rem;
+                            font-size: 1.5rem;
+                            font-weight: 700;
+                            color: variables.$white;
+                        }
+                    }
+        
+                    .bodegasSeccionMainContainer {
+                        width: 100%;
+                        height: 12.5rem;
+        
+                        .bodegaSeccionContainer {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+            
+                            .bodegaSeccion {
+                                width: 100%;
+                                height: 2rem;
+                                margin: 0.5rem 1rem;
+                                margin-bottom: 0;
+                                border-radius: 0.5rem;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-weight: 700;
+                                font-size: 1rem;
+                                transition: all 0.5s ease-in-out;
+                            }
+
+                            .bodegaDisponible {
+                                background-color: variables.$light-gray;
+                                color: variables.$black;
+                                cursor: pointer;
+                            }
+
+                            .bodegaDisponible:hover {
+                                background-color: variables.$primary-background;
+                                color: variables.$white;
+                            }
+
+                            .bodegaOcupada {
+                                background-color: variables.$gray;
+                                color: variables.$black;
+                            }
+
+                            .bodegaSeleccionada {
+                                background-color: variables.$primary-background;
+                                color: variables.$white;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .newServiceEntriesContainer::-webkit-scrollbar {
+        display: none;
+    }
+}
