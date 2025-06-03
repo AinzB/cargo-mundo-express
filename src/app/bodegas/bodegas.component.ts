@@ -31,6 +31,12 @@ export class BodegasComponent implements OnInit {
     }
   ];
 
+  filtroStatus:any[] = [
+    {name: 'Todos', value: 'Todos', active:true},
+    {name: 'Activo', value: 'Activo', active:false},
+    {name: 'Inactivo', value: 'Inactivo', active:false},
+  ];
+
   arryBodegas: Bodega[] = [];
 
   constructor(private bodegaService: BodegaService ,private alertService: AlertService) {}

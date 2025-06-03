@@ -186,3 +186,39 @@
         }
     }
 }
+
+@media (max-width: 630px) {
+    .inicioMainContainer {
+        padding-left: 0;
+        padding-right: 0;
+
+        .inicioHeader {
+            flex-direction: column;
+            align-items: flex-start;
+            height: 6rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .inicioMetricas {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+}
+
+@media (max-width: 512px) {
+    .inicioMainContainer {
+        .inicioMetricas {
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .inicioMainContainer {
+        .inicioHeader {
+            height: 9rem;
+        }
+    }
+}

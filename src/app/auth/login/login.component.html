@@ -1,0 +1,41 @@
+<div class="loginMainContainer">
+    <div class="imgLoginContainer">
+        <img src="carga_mundo_express_logo.png" alt="Logo Cargo Mundo Express">
+    </div>
+
+    <div class="loginContainer">
+
+        <div class="login">
+            <div class="loginHeader">
+                <h1>Iniciar Sesión</h1>
+                <p>¡Bienvenido! Por favor ingresa a tu cuenta</p>
+            </div>
+
+            <div class="loginBody">
+                <div class="loginInput">
+                    <label for="loginEmail">Nombre de usuario</label>
+                    <input type="email" id="loginEmail" placeholder="name@example.com" (keyup)="handleEmailChange($event)">
+                </div>
+
+                <div class="loginInput">
+                    <label for="loginPass">Contraseña</label>
+                    <input type="password" id="loginPass" placeholder="**********" (keyup)="handlePassChange($event)">
+                </div>
+            </div>
+
+            <div class="loginOlvidePass">
+                <a>Olvidé mi contraseña</a>
+            </div>
+
+            <div class="loginFooter">
+                <button (click)="submitLogin()">Ingresar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="spinner-container" class="spinner-overlay" role="status" *ngIf="loading" style="z-index: 9999;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>

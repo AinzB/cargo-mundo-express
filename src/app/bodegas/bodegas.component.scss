@@ -531,3 +531,185 @@ $top-menu-height: variables.$top-menu-height;
         cursor: pointer;
     }
 }
+
+@media (max-width: 1350px) {
+    .serviciosMainContainer {
+        .bodegasCardContainer {
+            .bodegaCard {
+                flex-basis: calc(50% - 2rem);
+                margin-right: 1rem;
+                margin-left: 1rem;
+
+                .bodegaActions {
+                    .bodegaBtnAction {
+                        min-width: 7rem;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1250px) {
+    .serviciosMainContainer {
+        .bodegasCardContainer {
+            .bodegaCard {
+                width: 46%;
+                margin-right: 1%;
+                margin-left: 1%;
+            }
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .serviciosMainContainer {
+        height: calc(100vh - 5rem);
+
+        .bodegasCardContainer {
+            .bodegaCard {
+                flex-basis: calc(50% - 2rem);
+                margin-right: 0;
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 850px) {
+    .serviciosMainContainer {
+        .bodegasCardContainer {
+            justify-content: center;
+
+            .bodegaCard {
+                flex-basis: calc(50% - 2rem);
+                margin-right: 1rem;
+                margin-left: 1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .serviciosMainContainer {
+        .bodegasFilter {
+            display: none;
+        }
+
+        .bodegasCardContainer {
+            border-radius:  1rem 1rem 0 0;
+
+            .bodegaCard {
+                min-width: 90%;
+                margin-right: 0;
+                margin-left: 0;
+                height: 100%;
+                padding-bottom: 1.5rem;
+
+                .bodegaCardHeader {
+                    overflow: hidden;
+                    flex-direction: column;
+                    height: 5rem;
+
+                    p {
+                        padding: 0;
+                    }
+                }
+
+                .bodegasSeccionMainContainer {
+                    height: 100%;
+
+                    .bodegaSeccionContainer {
+                        .bodegaSeccion {
+                            margin: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .serviciosMainContainer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        .bodegasCardContainer {
+            padding: 0 1rem;
+            padding-bottom: 2rem;
+        }
+    }
+
+    .modal {
+        .modal-contenido {
+            width: 95%;
+            overflow-y: auto;
+
+            .newBodegaCodigo {
+                .campo2 {
+                    width: 100%;
+                }
+            }
+
+            .contenedorBodegas {
+                flex-direction: column;
+                justify-content: flex-start;
+                height: 100%;
+                max-height: 24rem;
+
+                .bodegaInputContainer {
+                    width: 100%;
+                    max-height: 14rem;
+                }
+
+                .bodegasActions {
+                    width: 100%;
+                    max-height: 10rem;
+
+                    .bodegaActionsControles {                        
+                        button {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            .bodegaGuardarOpciones {
+                margin-top: 0;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-left: 1rem;
+                padding-right: 1rem;
+
+                button {
+                    width: 100%;
+                    margin-top: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 380px) {
+    .serviciosMainContainer {
+        .bodegasCardContainer {
+            .bodegaCard {
+                .bodegaActions {
+                    flex-direction: column;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+
+                    .bodegaBtnAction {
+                        width: 100%;
+                        padding-top: 0.1rem;
+                        padding-bottom: 0.1rem;
+                        margin-top: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}

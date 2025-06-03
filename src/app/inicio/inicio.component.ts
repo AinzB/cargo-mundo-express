@@ -36,7 +36,36 @@ export class InicioComponent implements OnInit {
 
   loading:boolean = false;
 
-  constructor(private envioService:Envioservice, private alertService: AlertService) {}
+  diasSemana: string[] = [
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado'
+  ];
+
+  mesesAno: string[] = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre'
+  ];
+
+  fechaActual: string = '';
+
+  constructor(private envioService:Envioservice, private alertService: AlertService) {
+    this.fechaActual = this.obtenerFechaFormateada();
+  }
 
 
   ngOnInit(): void {
@@ -97,5 +126,15 @@ export class InicioComponent implements OnInit {
       this.alertService.showError('Error al preparar el resumen.');
       this.loading = false;
     }
+  }
+
+  obtenerFechaFormateada(): string {
+    const hoy = new Date();
+    const nombreDia = this.diasSemana[hoy.getDay()];
+    const numeroDia = String(hoy.getDate()).padStart(2, '0');
+    const nombreMes = this.mesesAno[hoy.getMonth()];
+    const anio = hoy.getFullYear();
+
+    return `${nombreDia}, ${numeroDia} de ${nombreMes} de ${anio}`;
   }
 }

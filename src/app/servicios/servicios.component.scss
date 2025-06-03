@@ -108,12 +108,13 @@ $table-headers-total : $table-header-name-width + $table-header-description-widt
 
             .servicioTableRow {
                 border-top: solid 0.1rem variables.$light-gray;
+                border-right: solid 0.1rem variables.$light-gray;
             }
 
             .tableRows {
                 border-left: solid 0.1rem variables.$light-gray;
-                border-right: solid 0.1rem variables.$light-gray;
                 border-bottom: solid 0.1rem variables.$light-gray;
+                min-width: $table-headers-total;
                 margin-bottom: 1rem;
             }
         }
@@ -147,6 +148,26 @@ $table-headers-total : $table-header-name-width + $table-header-description-widt
         .servicioActivo {
             background-color: variables.$white;
             color: variables.$primary-background;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .serviciosMainContainer {
+        height: calc(100vh - 5rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .serviciosMainContainer {
+        .serviciosFilter {
+            display: none;
+        }
+
+        .serviciosTableContainer {
+            .serviciosTable {
+                border-radius: 1rem 1rem 0 0;
+            }
         }
     }
 }

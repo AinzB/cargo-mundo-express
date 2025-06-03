@@ -113,6 +113,7 @@ $top-menu-height: variables.$top-menu-height;
                     .userInfoTitle {
                         width: 20%;
 
+
                         p {
                             font-weight: 700;
                             color: variables.$black;
@@ -123,9 +124,9 @@ $top-menu-height: variables.$top-menu-height;
 
                     .userInfoDetail {
                         width: 80%;
-                        white-space: normal; 
-                        word-wrap: break-word; 
-                        overflow-wrap: break-word;
+                        white-space: normal;
+                        padding-left: 0.5rem;
+                        overflow-x: hidden;
 
                         p {
                             font-weight: 700;
@@ -148,7 +149,7 @@ $top-menu-height: variables.$top-menu-height;
 
                 .userActionButton {
                     color: variables.$white;
-                    width: 10rem;
+                    min-width: 8rem;
                     padding: 0.5rem 1rem;
                     border-radius: 1rem;
                     font-weight: 500;
@@ -216,4 +217,98 @@ $top-menu-height: variables.$top-menu-height;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 1050;
+}
+
+@media (max-width: 1250px) {
+    .usuariosContainerPrincipal {
+        .usariosContainer {
+            .userCard {
+                width: 48%;
+            }
+        }
+    }
+}
+
+@media (max-width: 1150px) {
+    .usuariosContainerPrincipal {
+        .usariosContainer {
+            flex-direction: column;
+
+            .userCard {
+                width: 75%;
+            }
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .usuariosContainerPrincipal {
+        height: calc(100vh - 5rem);
+
+        .usariosContainer {
+            flex-direction: row;
+            
+            .userCard {
+                width: 48%;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .usuariosContainerPrincipal {
+        .usariosContainer {
+            flex-direction: column;
+            
+            .userCard {
+                width: 75%;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) { 
+    .usuariosContainerPrincipal {
+        .usuariosFilter {
+            display: none;
+        }
+
+        .usariosContainer {
+            border-radius: 1rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .usuariosContainerPrincipal {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        .usariosContainer {    
+            padding-left: 1rem;
+            padding-right: 1rem;
+
+            .userCard {
+                width: 100%;
+
+                .userInfo {
+                    .userInfoRow {
+                        flex-direction: column;
+                    }
+                }
+
+                .userActions {
+                    flex-direction: column;
+                    padding-top: 0;
+
+                    .userActionButton {
+                        width: 100%;
+                        padding-top: 0.1rem;
+                        padding-bottom: 0.1rem;
+                        margin-top: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
 }

@@ -41,11 +41,11 @@ export class ServiciosComponent implements OnInit {
   loading: boolean = false;
   onUpdate: boolean = false;
 
-    filtroStatus:any[] = [
-      {name: 'Todos', value: 'Todos', active:true},
-      {name: 'Aereo', value: 'Aereo', active:false},
-      {name: 'Maritimo', value: 'Maritimo', active:false},
-    ];
+  filtroStatus:any[] = [
+    {name: 'Todos', value: 'Todos', active:true},
+    {name: 'Aereo', value: 'Aereo', active:false},
+    {name: 'Maritimo', value: 'Maritimo', active:false},
+  ];
 
   bootstrapModal: any;
 

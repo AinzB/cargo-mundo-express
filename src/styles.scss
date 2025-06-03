@@ -1,14 +1,14 @@
-@use 'variables';
+@use "variables";
 
 @font-face {
-    font-family: 'Montserrat';
-    src: url('/assets/font/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-family: "Montserrat";
+    src: url("/assets/font/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
     font-weight: 100 900;
     font-style: normal;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -89,6 +89,7 @@ p {
     display: flex;
     justify-content: flex-end;
     padding-top: 1rem;
+    padding-bottom: 0.5rem;
 
     .btnAgregar {
         width: 10rem;
@@ -103,6 +104,7 @@ p {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 0.5rem;
 
         .addIcon {
             font-size: 1.2rem;
@@ -155,7 +157,7 @@ p {
     justify-content: center;
 
     .searchBar {
-        width: 25rem;
+        width: 22rem;
         height: 3rem;
         border-radius: 1rem;
         padding: 0.1rem 1rem;
@@ -190,7 +192,6 @@ p {
 .mensajeAlerta {
     display: flex;
     width: 25rem;
-    height: 5rem;
     border-radius: 0.5rem;
     justify-content: flex-start;
     align-items: center;
@@ -198,7 +199,8 @@ p {
     left: calc(50% - 12.5rem);
     top: 3%;
     z-index: 9999;
-    animation: fadeInOut 3s ease-in-out;
+    padding: 1rem 0;
+    animation: fadeInOut 3s ease-in-out forwards;
 
     img {
         width: 2rem;
@@ -208,6 +210,7 @@ p {
     p {
         margin-bottom: 0rem;
         margin-left: 1rem;
+        margin-right: 1rem;
         color: variables.$white;
         font-weight: 500;
         font-size: 1.3rem;
@@ -219,11 +222,13 @@ p {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     10%,
     90% {
         opacity: 1;
         transform: translateY(0);
     }
+
     100% {
         opacity: 0;
         transform: translateY(-10px);
@@ -249,4 +254,132 @@ p {
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 1050;
+}
+
+.filtroMobile {
+    width: 20rem;
+    margin-bottom: 1rem;
+    display: none;
+
+    .newServiceInput {
+        position: relative;
+        width: 100%;
+        margin-top: 1rem;
+
+        input,
+        select {
+            width: 100%;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            padding: 0 1.5rem;
+            border: 2px solid variables.$gray;
+            background: variables.$white;
+            color: variables.$primary-background;
+            outline: none;
+        }
+
+        input::placeholder,
+        select::placeholder {
+            opacity: 0;
+            transition: opacity 0.3 ease;
+        }
+
+        label {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            transform: translateY(-50%);
+            color: variables.$secondary-background;
+            font-size: 1rem;
+            pointer-events: none;
+            background-color: transparent;
+            padding: 0 1rem;
+            transition: 0.3s;
+        }
+
+        input:focus::placeholder,
+        select:focus::placeholder {
+            opacity: 1;
+        }
+
+        input:focus~label,
+        input:valid~label,
+        select:focus~label,
+        select:valid~label {
+            top: 0;
+            left: 5%;
+            font-size: 0.8rem;
+            padding: 0 1rem;
+            background: variables.$secondary-background;
+            border: 2px solid variables.$secondary-background;
+            border-radius: 1rem;
+            color: variables.$white;
+        }
+    }
+}
+
+@media (max-width: 1080px) {
+    .pageHeaderNav {
+        .pageHeaderSearch {
+            .searchBar {
+                width: 19rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .pageHeaderNav {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+
+        .pageHeaderSearch {
+            margin-top: 1rem;
+        }
+    }
+
+    .filtroMobile {
+        display: block;
+    }
+}
+
+@media (max-width: 425px) {
+    .pageTitle {
+        h2 {
+            font-size: 1.6rem;
+        }
+    }
+
+    .pageHeaderNav {
+        .pageHeaderSearch {
+            width: 100%;
+
+            .searchBar {
+                width: 100%;
+                padding: 0;
+                border-radius: 0.5rem 1rem 1rem 0.5rem;
+                padding-left: 0.5rem;
+                padding-right: 2.5rem;
+            }
+        }
+    }
+
+    .mensajeAlerta {
+        width: 90%;
+        left: 5%;
+    }
+}
+
+@media (max-width: 375px) {
+    .filtroMobile {
+        width: 100%;
+    }
+
+    .pageAgregar {
+        .btnAgregar {
+            width: 100%;
+        }
+    }
 }

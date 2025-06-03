@@ -18,6 +18,15 @@
         </button>
     </div>
 
+    <div class="filtroMobile">
+        <div class="newServiceInput">
+            <select value="" id="selectInputFilterStatus" name="selectInputFilterStatus" required (change)="filtrarEnvios($event)">
+                <option value="Retrasado" *ngFor="let filtros of filtroStatus">{{filtros.value}}</option>
+            </select>
+            <label for="selectInputFilterStatus">Status</label>
+        </div>
+    </div>
+
     <div class="serviciosFilter mtop2">
         <button *ngFor="let filtros of filtroStatus" 
             name="{{filtros.name}}" 
@@ -123,12 +132,12 @@
                         <label for="servicioDuracion">Duración del viaje</label>
                     </div>
 
-                    <div class="col-6 form-floating mb-3">
+                    <div class="col-12 col-md-6 form-floating mb-3">
                         <input type="text" placeholder="Precio por libra" id="servicioPriceperlb" class="form-control">
                         <label for="servicioPriceperlb">Precio por libra</label>
                     </div>
 
-                    <div class="col-6 form-floating mb-3">
+                    <div class="col-12 col-md-6 form-floating mb-3">
                         <input type="text" placeholder="Precio extra" id="servicioExtraprice" class="form-control">
                         <label for="servicioExtraprice">Precio extra</label>
                     </div>

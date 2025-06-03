@@ -1,0 +1,181 @@
+<div class="topHeader">
+  <div class="topHeaderMenu">
+    <a data-bs-toggle="offcanvas" data-bs-target="#appMainMenu" aria-controls="appMainMenu"
+      aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </a>
+
+    <img src="carga_mundo_express_horizontal.png" alt="Logo Carga Mundo Express" />
+  </div>
+
+  <div class="userProfile">
+    <div class="userImg" (click)="abrirModal()">
+      <img src="default_avatar.svg" alt="Default Avatar" />
+    </div>
+
+    <div class="userInfo">
+      <p class="userName">{{ussSess.username}}</p>
+      <p class="userMail">{{ussSess.email}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="headerMain">
+  <div class="navBar navBarAux">
+    <div class="navBarTitle">
+      <h1>¡Bienvenido, <br> <span>{{userRole}}</span>!</h1>
+    </div>
+
+    <div class="navSpace">
+      <p>Menú</p>
+    </div>
+
+    <div class="navBarValues">
+      <a [routerLink]="['/inicio']" [ngClass]="{ active: '/inicio' === paginaActual }">
+        <i class="fa-solid fa-house-chimney navIcon"></i>Inicio
+      </a>
+
+      <a [routerLink]="['/envios']" [ngClass]="{ active: '/envios' === paginaActual }">
+        <i class="fa-solid fa-truck-fast navIcon"></i>Envios
+      </a>
+
+      <a [routerLink]="['/servicios']" [ngClass]="{ active: '/servicios' === paginaActual }">
+        <i class="fa-solid fa-gear navIcon"></i>Servicios
+      </a>
+
+      <a [routerLink]="['/bodegas']" [ngClass]="{ active: '/bodegas' === paginaActual }">
+        <i class="fa-solid fa-warehouse navIcon"></i>Bodegas
+      </a>
+
+      <a [routerLink]="['/usuarios']" [ngClass]="{ active: '/usuarios' === paginaActual }">
+        <i class="fa-solid fa-users navIcon"></i>Usuarios
+      </a>
+
+      <a [routerLink]="['/reportes']" [ngClass]="{ active: '/reportes' === paginaActual }">
+        <i class="fa-solid fa-file-lines navIcon"></i>Reportes
+      </a>
+    </div>
+
+    <div class="logOut">
+      <a (click)="cerrarSesion()">
+        <i class="fa-solid fa-right-from-bracket navIcon"></i> Cerrar Sesión
+      </a>
+    </div>
+  </div>
+
+  <div class="mainContainer">
+    <div class="componentContainer">
+      <router-outlet></router-outlet>
+      <!-- Aquí se cargan los componentes según la ruta -->
+    </div>
+  </div>
+</div>
+
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="appMainMenu" aria-labelledby="appMainMenuLabel">
+  <div class="offcanvas-header">
+    <!-- Botón de cierre -->
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+  </div>
+
+  <div class="headerMain">
+    <div class="navBar">
+      <div class="navBarTitle">
+        <h1>¡Bienvenido, <span>Administrador</span>!</h1>
+      </div>
+
+      <div class="navSpace">
+        <p>Menú</p>
+      </div>
+
+      <div class="navBarValues">
+        <a [routerLink]="['/inicio']" [ngClass]="{ active: '/inicio' === paginaActual }" data-bs-dismiss="offcanvas">
+          <i class="fa-solid fa-house-chimney navIcon"></i>Inicio
+        </a>
+
+        <a [routerLink]="['/envios']" [ngClass]="{ active: '/envios' === paginaActual }" data-bs-dismiss="offcanvas">
+          <i class="fa-solid fa-truck-fast navIcon"></i>Envios
+        </a>
+
+        <a [routerLink]="['/servicios']" [ngClass]="{ active: '/servicios' === paginaActual }"
+          data-bs-dismiss="offcanvas">
+          <i class="fa-solid fa-gear navIcon"></i>Servicios
+        </a>
+
+        <a [routerLink]="['/bodegas']" [ngClass]="{ active: '/bodegas' === paginaActual }" data-bs-dismiss="offcanvas">
+          <i class="fa-solid fa-warehouse navIcon"></i>Bodegas
+        </a>
+
+        <a [routerLink]="['/usuarios']" [ngClass]="{ active: '/usuarios' === paginaActual }"
+          data-bs-dismiss="offcanvas">
+          <i class="fa-solid fa-users navIcon"></i>Usuarios
+        </a>
+
+        <a [routerLink]="['/reportes']" [ngClass]="{ active: '/reportes' === paginaActual }"
+          data-bs-dismiss="offcanvas">
+          <i class="fa-solid fa-file-lines navIcon"></i>Reportes
+        </a>
+      </div>
+
+      <div class="logOut">
+        <a (click)="cerrarSesion()">
+          <i class="fa-solid fa-right-from-bracket navIcon"></i> Cerrar Sesión
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modalSessUser" id="editSessionUser" tabindex="-1" aria-labelledby="editSessionUserLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editSessionUserLabel">Vista Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputName" class="form-label">Nombre</label>
+            <input type="text" id="inputName" class="form-control" placeholder="Nombre" [(ngModel)]="editUser.username"
+              name="name" />
+          </div>
+
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Correo</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Correo" [(ngModel)]="editUser.email"
+              name="email" />
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+              [(ngModel)]="editUser.password" name="password" />
+          </div>
+
+          <div class="mb-3">
+            <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirmar Password"
+              [(ngModel)]="editUser.confirmPassword" name="confirmPassword" />
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarModal()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="guardarActualizarUsuario()">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="spinner-container" class="spinner-overlay" role="status" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>

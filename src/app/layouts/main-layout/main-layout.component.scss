@@ -1,0 +1,334 @@
+@use 'variables';
+
+$top-menu-height: variables.$top-menu-height;
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/assets/font/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+} 
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}  
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+}  
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0px;
+}
+
+span {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.topHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: $top-menu-height;
+    background-color: variables.$white;
+    position: fixed;
+    z-index: 1000;
+
+    .topHeaderMenu {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        a {
+            background-color: variables.$white;
+            border: solid 0.1rem variables.$primary-background;
+            color: variables.$primary-background;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border-radius: 0.4rem;
+            margin-left: 2.5rem;
+            transition: all 0.5s ease-in-out;    
+            cursor: pointer;
+            display: none;     
+        }
+
+        a:hover {
+            color: variables.$white;
+            background-color: variables.$primary-background;
+        }
+
+        img {
+            height: 15rem;
+            width: 15rem;
+            margin-left: 2.5rem;
+        }
+    }
+
+    .userProfile {
+        margin-right: 5rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .userImg {
+            width: 2.5rem;
+            height: 2.5rem;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                height: 100%;
+                margin-left: 0rem;
+            }
+        }
+
+        .userInfo {
+            padding-left: 1rem;
+
+            .userName {
+                font-size: 1rem;
+                font-weight: 700;
+            }
+
+            .userMail {
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+.headerMain {
+    display: flex;
+    background-color: variables.$white;
+
+    .navBar {
+        min-height: calc(100vh - $top-menu-height);
+        height: calc(100vh - $top-menu-height);
+        width: 25%;
+        overflow: hidden;
+        background-color: variables.$white;
+        position: sticky;
+        top: $top-menu-height;
+        padding-left: 1rem;
+
+        .navSpace {
+            text-align: left;
+            height: 2rem;
+            overflow-y: hidden;
+
+            p {
+                color: variables.$gray;
+                padding-left: 1.5rem;
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+        }
+
+        .navBarTitle {
+            text-align: left;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            height: 5rem;
+            overflow-y: hidden;
+
+            h1 {
+                color: variables.$black;
+                font-size: 2rem;
+                font-weight: 700;
+
+                span {
+                    color: variables.$primary-background;
+                }
+            }
+        }
+
+        .navBarValues {
+            display: flex;
+            flex-direction: column;
+            width: 15.5rem;
+            padding-left: 3rem;
+            padding-bottom: 2rem;
+            height: calc(70% - 7rem);
+            overflow-y: auto;
+            scrollbar-width: none;
+            -moz-scrollbars-none: true; 
+
+            a {
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: variables.$gray;
+                transition: all 0.5s ease-in-out;
+                padding: 0.5rem 1rem;
+                margin-top: 1rem;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                border-radius: 2rem;
+                width: 90%;
+
+                .navIcon {
+                    padding-right: 1rem;
+                }
+            }
+
+            a:hover {
+                color: variables.$white;
+                background-color: variables.$primary-background;
+                box-shadow: 5px 5px 10px variables.$gray;
+            }
+
+            .active {
+                color: variables.$white;
+                background-color: variables.$primary-background;
+                box-shadow: 5px 5px 10px variables.$gray;
+            }
+        }
+
+        .logOut {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 2rem;
+            padding-left: 1.5rem;
+
+            a {
+                cursor: pointer;
+                color: variables.$gray;
+                font-size: 1.5rem;
+                font-weight: 500;
+                display: flex;
+                align-items: anchor-center;
+                transition: all 0.5s ease-in-out;
+
+                .navIcon {
+                    padding-right: 1rem;
+                }
+            }
+
+            a:hover {
+                color: variables.$red;
+            }
+        }
+    }
+
+    .mainContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        margin-top: $top-menu-height;
+
+        .componentContainer {
+            background-color: variables.$light-gray;
+            width: 100%;
+            height: 100%;
+            border-radius: 3rem 0 0 0;
+        }
+    }
+}
+
+.modalSessUser {
+    z-index: 1000;
+}
+
+@media (max-width: 1240px) {
+    .headerMain {
+        .navBar {
+            width: 30%;
+        }
+
+        .mainContainer {
+            width: 70%;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .topHeader {
+        height: 5rem;
+        .topHeaderMenu {
+            a {
+                display: flex;
+            }
+        }
+    }
+
+    .headerMain {
+        .navBarAux {
+            display: none;
+        }
+
+        .navBar {
+            min-height: 100vh;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .mainContainer {
+            width: 100%;
+            margin-top: 5rem;
+            
+            .componentContainer {
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .topHeader {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        .topHeaderMenu {
+            order: 1;
+
+            img {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .topHeader {
+        .topHeaderMenu {
+            a {
+                margin-left: 1rem;
+            }
+        }
+        
+        .userProfile {
+            margin-right: 1rem;
+
+            .userInfo {
+                .userMail {
+                    overflow-wrap: break-word;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                }
+            }
+        }
+    }
+}

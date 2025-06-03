@@ -11,16 +11,27 @@
         </div>
     </div>
 
-    <div class="pageAgregar">
-        <button id="btnAgregar" class="btnTickets" (click)="abrirModalTicketSeleccion()">
-            Tickets
-            <span class="addIcon"><i class="fa-solid fa-file-pdf"></i></span>
-        </button>
+    <div class="pageAgregarEnvio">
+        <div class="filterButton">
+            <div class="newServiceInput">
+                <select value="{{ envio.status }}" id="selectInputFilterStatus" name="selectInputFilterStatus" required (change)="handleInputChange($event)">
+                    <option *ngFor="let filtros of filtroStatus" value="{{filtros.value}}">{{filtros.value}}</option>
+                </select>
+                <label for="selectInputFilterStatus">Status</label>
+            </div>
+        </div>
 
-        <button id="btnAgregar" class="btnAgregar" (click)="abrirModal()">
-            Agregar
-            <span class="addIcon">+</span>
-        </button>
+        <div class="ticketButtons">
+            <button id="btnAgregar" class="btnTickets" (click)="abrirModalTicketSeleccion()">
+                Tickets
+                <span class="addIcon"><i class="fa-solid fa-file-pdf"></i></span>
+            </button>
+
+            <button id="btnAgregar" class="btnAgregar" (click)="abrirModal()">
+                Agregar
+                <span class="addIcon">+</span>
+            </button>
+        </div>
     </div>
 
     <div class="enviosFilter mtop2">
@@ -194,7 +205,7 @@
         <div class="separador"></div>
 
         <div class="ticketContainer" *ngIf="modalTicketSeleccion">
-            <div class="ticketCard mright2">
+            <div class="ticketCard mright2 firstTicket">
                 <div class="ticketHeader">
                     <h3>Ticket #1</h3>
                 </div>

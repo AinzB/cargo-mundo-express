@@ -18,6 +18,15 @@
         </button>
     </div>
 
+    <div class="filtroMobile">
+        <div class="newServiceInput">
+            <select value="" id="selectInputFilterStatus" name="selectInputFilterStatus" required>
+                <option value="Retrasado" *ngFor="let filtros of filtroStatus">{{filtros.value}}</option>
+            </select>
+            <label for="selectInputFilterStatus">Status</label>
+        </div>
+    </div>
+
     <div class="bodegasFilter">
         <button class="bodegaFiltro bodegaActivo">Todos</button>
 
@@ -30,7 +39,7 @@
         <div *ngFor="let bodega of arryBodegas" [ngClass]="bodega.active ? 'bodegaCard' : 'bodegaCardInactive'">
             <div class="bodegaCardHeader">
                 <img src="warehouse.svg" alt="Warehouse icon">
-                <p>Bodega #{{ bodega.codigo }}</p>
+                <p>#{{ bodega.codigo }}</p>
             </div>
 
             <div class="bodegasSeccionMainContainer">

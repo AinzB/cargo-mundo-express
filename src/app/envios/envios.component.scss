@@ -161,6 +161,102 @@ $modal-header-height: 3rem;
     padding: 2rem;
     overflow-y: auto;
 
+    .pageAgregarEnvio {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 1rem;
+
+        .filterButton {
+            display: none;
+            align-items: center;
+            width: 15rem;
+
+            .newServiceInput {
+                position: relative;
+                width: 100%;
+                margin-top: 1rem;
+    
+                input, select {
+                    width: 100%;
+                    height: 2.5rem;
+                    border-radius: 0.5rem;
+                    font-size: 1rem;
+                    padding: 0 1.5rem;
+                    border: 2px solid variables.$gray;
+                    background: variables.$white;
+                    color: variables.$primary-background;
+                    outline: none;
+                }
+    
+                input::placeholder, select::placeholder{
+                    opacity: 0;
+                    transition: opacity 0.3 ease;
+                }
+    
+                label {
+                    position: absolute;
+                    top: 50%;
+                    left: 0%;
+                    transform: translateY(-50%);
+                    color: variables.$secondary-background;
+                    font-size: 1rem;
+                    pointer-events: none;
+                    background-color: transparent;
+                    padding: 0 1rem;
+                    transition: 0.3s;
+                }
+    
+                input:focus::placeholder, select:focus::placeholder {
+                    opacity: 1;
+                }
+    
+                input:focus ~ label,
+                input:valid ~ label,
+                select:focus ~ label,
+                select:valid ~ label {
+                    top: 0;
+                    left: 5%;
+                    font-size: 0.8rem;
+                    padding: 0 1rem;
+                    background: variables.$secondary-background;
+                    border: 2px solid variables.$secondary-background;
+                    border-radius: 1rem;
+                    color: variables.$white;
+                }
+            }
+        }
+
+        .ticketButtons {
+            display: flex;
+
+            .btnAgregar {
+                width: 10rem;
+                background-color: transparent;
+                border: solid 0.15rem variables.$primary-background;
+                color: variables.$primary-background;
+                font-size: 1.2rem;
+                padding: 0.3rem 1.5rem;
+                border-radius: 2rem;
+                transition: all 0.5s ease-in-out;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .addIcon {
+                    font-size: 1.2rem;
+                    font-weight: 900;
+                }
+            }
+
+            .btnAgregar:hover {
+                background-color: variables.$primary-background;
+                color: variables.$white;
+            }
+        }
+    }
+
     .enviosTableContainer {
         width: 100%;
         display: flex;
@@ -862,5 +958,158 @@ $modal-header-height: 3rem;
 
     .newServiceEntriesContainer::-webkit-scrollbar {
         display: none;
+    }
+}
+
+@media (max-width: 1250px) {
+    .enviosMainContainer {
+        .enviosFilter {
+            display: none;
+        }
+
+        .pageAgregarEnvio {
+            width: 100%;
+            justify-content: space-between;
+
+            .filterButton {
+                display: flex;
+            }
+        }
+
+        .enviosTableContainer {
+            margin-top: 1rem;
+
+            .enviosTable {
+                border-radius: 1.5rem 1.5rem 0 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .enviosMainContainer {
+        height: calc(100vh - 5rem);
+    }
+}
+
+@media (max-width: 767px) {
+    .enviosMainContainer {
+        .pageAgregarEnvio {
+            flex-direction: column;
+
+            .filterButton {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    .modalTicket {
+        .modal-contenido {
+            width: 90%;
+        }
+    }
+
+    .modal {
+        .modal-contenido {
+            width: 90%;
+
+            .newServiceEntriesContainer {
+                .bodegasCardContainer {
+                    padding: 0;
+
+                    .bodegaCard {
+                        width: 90%;
+                        margin: 1rem 0;
+
+                        .bodegasSeccionMainContainer {
+                            .bodegaSeccionContainer {
+                                .bodegaSeccion {
+                                    font-size: 0.7rem;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .halfField {
+                    width: 100%;
+                }
+
+                .newEnvioServicio {
+                    .envioServicioTable {
+                        overflow-x: auto;
+
+                        table {
+                            min-width: 30rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .enviosMainContainer {
+        .enviosTableContainer {
+            .enviosTable {
+                border-radius: 0.5rem 0.5rem 0 0;
+            }
+        }
+    }
+
+    .modalTicket {
+        .modal-contenido {
+            .newTickerEntrieContainer {
+                .halfField {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .enviosMainContainer {
+        .pageAgregarEnvio {
+            .ticketButtons {
+                flex-direction: column;
+
+                .btnTickets {
+                    width: 100%;
+                    margin-bottom: 1rem;
+                }
+
+                .btnAgregar {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .modalTicket {
+        .modal-contenido {
+            .ticketContainer {
+                flex-direction: column;
+
+                .firstTicket {
+                    margin-bottom: 7rem;
+                    height: 100%;
+                    margin-right: 0rem;
+                }
+
+                .ticketCard {
+                    flex-basis: calc(100% - 1rem);
+
+                    .ticketBody {
+                        height: 22rem;
+
+                        img {
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -18,6 +18,15 @@
         </button>
     </div>
 
+    <div class="filtroMobile">
+        <div class="newServiceInput">
+            <select value="" id="selectInputFilterStatus" name="selectInputFilterStatus" required>
+                <option value="{{filtros.value}}" *ngFor="let filtros of filtroStatus">{{filtros.name}}</option>
+            </select>
+            <label for="selectInputFilterStatus">Status</label>
+        </div>
+    </div>
+
     <div class="usuariosFilter">
         <button class="usuarioFiltro" *ngFor="let filtro of filtroStatus" 
             (click)="handleFiltroPorActivo($event)"

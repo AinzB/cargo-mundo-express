@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { identity, Observable } from "rxjs";
 import { Usuario } from "../models/usuario.model";
 import { ApiConfig } from "../config/api.config";
+import { AuthService } from "./auth.service";
 
 @Injectable({
     providedIn: 'root',
@@ -11,7 +12,7 @@ import { ApiConfig } from "../config/api.config";
 export class UsuarioService {
     private apiUrl = ApiConfig.baseUrl + ApiConfig.usuariosEndpoint;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private authService: AuthService) { }
 
     // Listar todos los usuarios
     getUsuarios(): Observable<Usuario[]> {
@@ -51,5 +52,13 @@ export class UsuarioService {
     // Reactivar un usuario
     activarUsuario(id:number): Observable<void> {
         return this.http.post<void>(`${this.apiUrl}/activarusuario/${id}`, null);
+    }
+
+    getSessionUser(): Observable<Usuario> {
+        return this.authService.user();
+    }
+
+    logout(): Observable<void> {
+        return this.authService.logout();
     }
 }
